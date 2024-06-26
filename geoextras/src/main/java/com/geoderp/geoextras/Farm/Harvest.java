@@ -18,9 +18,11 @@ public class Harvest implements Listener {
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
-        if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (isValidPlant(event.getClickedBlock().getType()) && ((Ageable) event.getClickedBlock().getBlockData()).getAge() == ((Ageable) event.getClickedBlock().getBlockData()).getMaximumAge()) {
-                replacePlant(event.getClickedBlock());
+        if(event.getPlayer().hasPermission("GeoExtras.farm.harvest")) {
+            if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                if (isValidPlant(event.getClickedBlock().getType()) && ((Ageable) event.getClickedBlock().getBlockData()).getAge() == ((Ageable) event.getClickedBlock().getBlockData()).getMaximumAge()) {
+                    replacePlant(event.getClickedBlock());
+                }
             }
         }
     }

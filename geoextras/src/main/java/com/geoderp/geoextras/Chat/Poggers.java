@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 public class Poggers implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("GeoPlugin.commands.poggers")) {
-            if (args.length > 0 && sender.hasPermission("GeoPlugin.commands.poggers.others")) {
+        if (sender.hasPermission("GeoPlugin.chat.poggers")) {
+            if (args.length > 0 && sender.hasPermission("GeoPlugin.chat.poggers.others")) {
                 if (isPlayer(args[0])) {
                     pogOther(sender, Bukkit.getPlayer(args[0]));
                     sender.sendMessage(args[0] + " has been pogged at. :)");

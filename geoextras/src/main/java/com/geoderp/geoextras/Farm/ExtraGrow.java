@@ -19,7 +19,7 @@ public class ExtraGrow implements Listener {
 
     @EventHandler
     public void onClickEvent(PlayerInteractEvent event) {
-        if (event.getPlayer().hasPermission("GeoPlugin.mechanics.grow")) {
+        if (event.getPlayer().hasPermission("GeoPlugin.farm.grow")) {
             if (event.getMaterial().equals(Material.BONE_MEAL)) {
                 if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                     Material target = event.getClickedBlock().getType();

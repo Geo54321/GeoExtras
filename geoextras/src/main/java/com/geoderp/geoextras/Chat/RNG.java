@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 public class RNG implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("GeoPlugin.commands.rng")) {
+        if (sender.hasPermission("GeoPlugin.chat.rng")) {
             Random rand = new Random();
             int max = 20;
             if (args.length == 0) {

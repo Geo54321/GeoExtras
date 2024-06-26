@@ -14,7 +14,7 @@ public class JankStep implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if(player.hasPermission("GeoPlugin.jank.jankStep")) {
+        if(player.hasPermission("GeoPlugin.silly.jankStep")) {
             Location to = event.getTo();
             Location from = event.getFrom();
 

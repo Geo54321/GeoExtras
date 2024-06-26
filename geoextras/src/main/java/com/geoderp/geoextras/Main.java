@@ -55,7 +55,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new PissCreepers(), this);
         }
 
-        this.getCommand("geoplugin").setExecutor(new GeoExtras(this));
+        this.getCommand("geoextras").setExecutor(new GeoExtras(this));
     }
     
     @Override

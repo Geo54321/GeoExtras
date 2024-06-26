@@ -23,7 +23,7 @@ public class Scythe implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if(player.hasPermission("GeoPlugin.mechanics.scythe")) {
+        if(player.hasPermission("GeoPlugin.farm.scythe")) {
             if (event.getClickedBlock() != null) {
                 if (event.getClickedBlock().getType().equals(Material.SHORT_GRASS) || event.getClickedBlock().getType().equals(Material.TALL_GRASS) || event.getClickedBlock().getType().equals(Material.FERN) || event.getClickedBlock().getType().equals(Material.LARGE_FERN)) {
                     if (player.getInventory().getItemInMainHand().getType().equals(Material.SHEARS) || player.getInventory().getItemInOffHand().getType().equals(Material.SHEARS)) {
