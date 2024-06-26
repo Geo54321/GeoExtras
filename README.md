@@ -12,25 +12,25 @@ All the content in this plugin is separated into different distinct modules. The
 Holding a valid magnet item in your offhand will pull items and xp orbs to you when you move. Sneaking will disable the magnet effect (this is configurable).
 
 #### Magnet Strengths:
-Weak: Default pickup range of 2 blocks
-Strong: Default pickup range of 4 blocks
+- Weak: Default pickup range of 2 blocks
+- Strong: Default pickup range of 4 blocks
 
 #### Valid Magnet Item Types:
-Weak: Rabbit Foot, Heart of the Sea, Ghast Tear, Nautilus Shell
-Strong: Enchanted Golden Apple (Notch Apple), Nether Star, Netherite Ingot
+- Weak: Rabbit Foot, Heart of the Sea, Ghast Tear, Nautilus Shell
+- Strong: Enchanted Golden Apple (Notch Apple), Nether Star, Netherite Ingot
 
 ### Zoomies
 Having a valid zoomies item in your inventory will give you a speed boost while sprinting. Regular walking will not get a boost.
 
 #### Zoomies Strengths:
-Weak: Speed 1
-Strong: Speed 2
-Giga: Speed 5
+- Weak: Speed 1
+- Strong: Speed 2
+- Giga: Speed 5
 
 #### Valid Zoomies Item Types:
-Weak: Feather
-Strong: Blaze Powder
-Giga: Powered Rail
+- Weak: Feather
+- Strong: Blaze Powder
+- Giga: Powered Rail
 
 ### Commands
 | Command | Permission Node | Description |
