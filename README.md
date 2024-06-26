@@ -73,7 +73,7 @@ Adds a couple silly chat commands.
 | /rng (max) (count) | GeoExtras.chat.rng | Generate a 1-20 with no arguments, or a given number of numbers with given maximum | /dice |
 | /blamegeo | GeoExtras.chat.blamegeo | Assigns blame | /blame, /geo |
 | /poggers | GeoExtras.chat.poggers | Poggers | /pog |
-|  | GeoExtras.chat.poggers.others | Poggers on others | /pog |
+| /poogers (player) | GeoExtras.chat.poggers.others | Poggers on others | /pog |
 
 ## Silly Module
 Misc features that are goofy or don't work properly
