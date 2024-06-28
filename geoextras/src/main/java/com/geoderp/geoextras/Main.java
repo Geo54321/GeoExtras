@@ -49,9 +49,9 @@ public class Main extends JavaPlugin {
 
         // Jank Module
         if (getConfig().getBoolean("modules.jank")) {
-            getServer().getPluginManager().registerEvents(new MountTeleport(), this);
+            //getServer().getPluginManager().registerEvents(new MountTeleport(), this);
             this.getCommand("explode").setExecutor(new Explode());
-            getServer().getPluginManager().registerEvents(new JankStep(), this);
+            //getServer().getPluginManager().registerEvents(new JankStep(), this);
             getServer().getPluginManager().registerEvents(new PissCreepers(), this);
         }
 
