@@ -7,7 +7,7 @@ This is a Minecraft Spigot plugin that adds features we use on the MCNSA communi
 # Modules
 All the content in this plugin is separated into different distinct modules. These modules can be disabled by finding the module you want to disable in the config file and setting it to false.
 
-## Artifacts
+## Artifacts Module
 ### Magnets
 Holding a valid magnet item in your offhand will pull items and xp orbs to you when you move. Sneaking will disable the magnet effect (this is configurable).
 
@@ -44,7 +44,7 @@ Having a valid zoomies item in your inventory will give you a speed boost while 
 |  | GeoExtras.artifacts.zoomies.strong | Gives access to use the strong zoomies |
 |  | GeoExtras.artifacts.zoomies.giga | Gives access to use the giga zoomies |
 
-## Farm
+## Farm Module
 Includes a couple different features relating to farming or plants.
 
 ### Shear Scythe
@@ -63,7 +63,15 @@ Allows right click harvesting and auto-replanting of the crops listed below.
 ### Bonemeal Other Things
 Allows bonemealing to duplicate lily pads and all small flowers except wither roses.
 
-## Chat Commands
+## Misc Module
+Contains misc features that don't fit into other categories
+
+### Lapis Elevators
+Allows the use to make "elevators" that teleport the user between vertical lapis blocks as long as there is an space above the elevator for them.
+
+**Permission Node: GeoExtras.misc.elevators**
+
+## Chat Module
 Adds a couple silly chat commands.
 
 ### Commands
@@ -106,6 +114,8 @@ If you play the creeper explosion priming noise in a rapid loop say from a comma
         - GeoExtras.commands.blamegeo -- Allows usage of /blamegeo
         - GeoExtras.commands.poggers -- Allows usage of /poggers
         - GeoExtras.commands.poggers.others -- Allows usage of /poggers on others
+    - GeoExtras.misc.*
+        - GeoExtras.misc.elevators -- Allows Usage of elevators
     - GeoExtras.farm.*
         - GeoExtras.farm.harvest -- Allows usage of right click harvest
         - GeoExtras.farm.frow -- Allows usage of the extra bonemeal growth

@@ -1,6 +1,6 @@
 main: com.geoderp.geoextras.Main
 name: GeoExtras
-version: 1.21.2
+version: 1.21.3
 author: GeoDerp
 api-version: 1.21
 description: All of the extra goodies for GeoPlugin
@@ -77,7 +77,7 @@ permissions:
   GeoExtras.silly.jankStep:
     description: Jank as fuck step assist
     default: op
-  GeoExtras.silly.elevators:
+  GeoExtras.misc.elevators:
     description: Allows use of Lapis Elevators
     default: op
   GeoExtras.artifacts.staff:
@@ -125,8 +125,13 @@ permissions:
       GeoExtras.chat.blamegeo: true
       GeoExtras.chat.poggers: true
       GeoExtras.chat.poggers.others: true
+  GeoExtras.misc.*:
+    description: Allows use of all parts of the misc module
+    default: op
+    children:
+      GeoExtras.misc.elevators: true
   GeoExtras.silly.*:
-    description: Allows usage of the jank bits of the plugin
+    description: Allows usage of the silly bits of the plugin
     default: op
     children:
       GeoExtras.silly.mountTeleport: true
@@ -146,6 +151,7 @@ permissions:
       GeoExtras.artifacts.*: true
       GeoExtras.farm.*: true
       GeoExtras.geoextras.*: true
+      GeoExtras.misc.*: true
       GeoExtras.chat.*: true
       GeoExtras.silly.*: true
   

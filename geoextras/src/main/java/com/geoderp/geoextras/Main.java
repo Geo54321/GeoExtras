@@ -47,18 +47,26 @@ public class Main extends JavaPlugin {
             this.getCommand("poggers").setExecutor(new Poggers());
         }
 
+        // Misc Module
+        if (getConfig().getBoolean("modules.misc")) {
+            getServer().getPluginManager().registerEvents(new LapisElevators(config.getInt("options.elevator-range")), this);
+        }
+
         // Silly Module
         if (getConfig().getBoolean("modules.silly")) {
             this.getCommand("explode").setExecutor(new Explode());
             getServer().getPluginManager().registerEvents(new PissCreepers(), this);
-            getServer().getPluginManager().registerEvents(new LapisElevators(config.getInt("options.elevator-range")), this);
+        }
+
+        // Enchantment Module
+        if (getConfig().getBoolean("modules.enchantments")) {
+            
         }
 
         // WIP Module
         if (getConfig().getBoolean("modules.soontm")) {
             getServer().getPluginManager().registerEvents(new MountTeleport(), this);
             getServer().getPluginManager().registerEvents(new JankStep(), this);
-            getServer().getPluginManager().registerEvents(new LapisElevators(config.getInt("options.elevator-range")), this);
         }
 
         this.getCommand("geoextras").setExecutor(new GeoExtras(this));
@@ -77,6 +85,7 @@ public class Main extends JavaPlugin {
         config.addDefault("modules.farm", true);
         config.addDefault("modules.artifacts", true);
         config.addDefault("modules.chat", true);
+        config.addDefault("modules.misc", true);
         config.addDefault("modules.silly", true);
         config.addDefault("modules.enchantments", true);
         config.addDefault("modules.soontm", true);

@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -58,6 +59,7 @@ public class Scythe implements Listener {
             target.getWorld().dropItemNaturally(target.getLocation(), drops.next());
         }
         target.setType(Material.AIR);
-        target.getWorld().playSound(target.getLocation(), Sound.BLOCK_GRASS_BREAK, (float) 0.45, (float) (0.96 + Math.random() * 0.24));
+        target.getWorld().playSound(target.getLocation(), Sound.BLOCK_GRASS_BREAK, (float) 0.25, (float) (0.96 + Math.random() * 0.24));
+        target.getWorld().spawnParticle(Particle.COMPOSTER, target.getLocation(), (int) (1 + Math.random() * 2),0,1,0);
     }
 }

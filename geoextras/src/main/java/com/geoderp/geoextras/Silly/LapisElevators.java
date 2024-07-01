@@ -2,6 +2,10 @@ package com.geoderp.geoextras.Silly;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,66 +20,84 @@ public class LapisElevators implements Listener {
     }
 
     @EventHandler
-    public void onPlayerSnake(PlayerToggleSneakEvent event) {
-        if (event.getPlayer().hasPermission("GeoExtras.silly.elevators")) {
-            Location floor = event.getPlayer().getLocation().add(0,-1,0);
-            if (floor.getBlock().getType().equals(Material.LAPIS_BLOCK)) {
-                if (event.getPlayer().isSneaking()) {
-                    // Sneaking - attempt down elevator
-                    doElevator(floor, -1, event.getPlayer());
+    public void onPlayerSneak(PlayerToggleSneakEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("GeoExtras.misc.elevators")) {
+            Location pos = player.getLocation();
+            Block floor = pos.add(0,-1,0).getBlock();
+            if(floor.getType().equals(Material.LAPIS_BLOCK)) {
+                if (event.isSneaking()) {
+                    Block validElevator = checkElevator(floor, false);
+                    if (validElevator != null) {
+                        doElevator(player, validElevator);
+                    }
                 }
             }
         }
     }
-    
+
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if (event.getPlayer().hasPermission("GeoExtras.silly.elevators")) {
-            Location floor = event.getFrom().add(0,-1,0);
-            if (floor.getBlock().getType().equals(Material.LAPIS_BLOCK)) {
-                if (event.getTo().getY() > event.getFrom().getY() + 1) {
-                    // Jumping - attempt up elevator
-                    doElevator(floor, 1, event.getPlayer());
+        Player player = event.getPlayer();
+        if (player.hasPermission("GeoExtras.misc.elevators")) {
+            Location pos = player.getLocation();
+            Block floor = pos.add(0,-1,0).getBlock();
+            if(floor.getType().equals(Material.LAPIS_BLOCK)) {
+                if (event.getTo().getBlockY() >= event.getFrom().getBlockY()+1) {
+                    Block validElevator = checkElevator(floor, true);
+                    if (validElevator != null) {
+                        doElevator(player, validElevator);
+                    }
                 }
             }
         }
     }
-    
-    public double checkElevator(Location from, int direction, Player player) {
-        Location to = from;
 
-        for (int g = 1; g < maxRange; g++) {
-            if (direction > 0) {
-                // Going up
-                to.setY(to.getY()+1);
+    public Block checkElevator(Block orig, boolean up) {
+        Block target = orig;
+        for(int g = 0; g < this.maxRange; g++) {
+            if (up) {
+                // Upavator
+                target = target.getRelative(BlockFace.UP);
             }
             else {
-                // Going down
-                to.setY(to.getY()-1);
+                // Downavator
+                target = target.getRelative(BlockFace.DOWN);
             }
             
-            if (to.getBlock().getType().equals(Material.LAPIS_BLOCK)) {
-                // Found a potnential elevator
-                Location air1 = to.add(0,1,0);
-                Location air2 = to.add(0,2,0);
-                if (air1.getBlock().getType().equals(Material.AIR) && air2.getBlock().getType().equals(Material.AIR)) {
-                    // airspace is clear - valid elevator
-                    return to.getY() - 1.5;
+            if (target.getType().equals(Material.LAPIS_BLOCK)) {
+                // Is valid elevator block
+                if (target.getRelative(BlockFace.UP).getType().equals(Material.AIR) && target.getRelative(BlockFace.UP,2).getType().equals(Material.AIR)) {
+                    // Has air gap above elevator - valid elevator
+                    return target;
                 }
             }
         }
-
-        return 0;
+        return null;
     }
 
-    public void doElevator(Location floor, int direction, Player player) {
-        double elevator = checkElevator(floor, direction, player);
+    // public Block checkUpavator(Block orig) {
+    //     Block target = orig;
+    //     for(int g = 0; g < this.maxRange; g++) {
+    //         target = target.getRelative(BlockFace.UP);
+    //         if (target.getType().equals(Material.LAPIS_BLOCK)) {
+    //             // Is valid elevator block
+    //             if (target.getRelative(BlockFace.UP).getType().equals(Material.AIR) && target.getRelative(BlockFace.UP,2).getType().equals(Material.AIR)) {
+    //                 // Has air gap above elevator - valid elevator
+    //                 return target;
+    //             }
+    //         }
+    //     }
+    //     return null;
+    // }
 
-        if (elevator != 0) {
-            floor.setY(elevator);
-            //particle effects on both elevators
-            player.teleport(floor);
-            //player.playSound();
-        }
+    public void doElevator(Player player, Block dest) {
+        Location loc = player.getLocation();
+        loc.setX(dest.getX()+0.5);
+        loc.setY(dest.getY()+1);
+        loc.setZ(dest.getZ()+0.5);
+        dest.getWorld().spawnParticle(Particle.ENCHANT, loc.getBlockX()+0.5,loc.getBlockY(),loc.getBlockZ()+0.5, 25,Math.random()*0.25,Math.random()*0.10,Math.random()*0.25,0);
+        dest.getWorld().playSound(loc, Sound.BLOCK_AMETHYST_BLOCK_RESONATE, (float) 0.85, (float) 0.96);
+        player.teleport(loc);
     }
 }
