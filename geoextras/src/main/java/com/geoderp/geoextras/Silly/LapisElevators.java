@@ -76,21 +76,6 @@ public class LapisElevators implements Listener {
         return null;
     }
 
-    // public Block checkUpavator(Block orig) {
-    //     Block target = orig;
-    //     for(int g = 0; g < this.maxRange; g++) {
-    //         target = target.getRelative(BlockFace.UP);
-    //         if (target.getType().equals(Material.LAPIS_BLOCK)) {
-    //             // Is valid elevator block
-    //             if (target.getRelative(BlockFace.UP).getType().equals(Material.AIR) && target.getRelative(BlockFace.UP,2).getType().equals(Material.AIR)) {
-    //                 // Has air gap above elevator - valid elevator
-    //                 return target;
-    //             }
-    //         }
-    //     }
-    //     return null;
-    // }
-
     public void doElevator(Player player, Block dest) {
         Location loc = player.getLocation();
         loc.setX(dest.getX()+0.5);
