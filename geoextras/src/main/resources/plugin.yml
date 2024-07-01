@@ -77,6 +77,9 @@ permissions:
   GeoExtras.silly.jankStep:
     description: Jank as fuck step assist
     default: op
+  GeoExtras.silly.elevators:
+    description: Allows use of Lapis Elevators
+    default: op
   GeoExtras.artifacts.staff:
     description: Allows access to the staff version of geoartifact
     default: op
@@ -129,6 +132,7 @@ permissions:
       GeoExtras.silly.mountTeleport: true
       GeoExtras.silly.jankStep: true
       GeoExtras.silly.explode: true
+      GeoExtras.silly.elevators: true
   GeoExtras.geoextras.*:
     description: Allows all of the GeoExtras command
     default: op

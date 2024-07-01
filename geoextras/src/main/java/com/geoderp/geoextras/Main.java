@@ -47,12 +47,18 @@ public class Main extends JavaPlugin {
             this.getCommand("poggers").setExecutor(new Poggers());
         }
 
-        // Jank Module
-        if (getConfig().getBoolean("modules.jank")) {
-            //getServer().getPluginManager().registerEvents(new MountTeleport(), this);
+        // Silly Module
+        if (getConfig().getBoolean("modules.silly")) {
             this.getCommand("explode").setExecutor(new Explode());
-            //getServer().getPluginManager().registerEvents(new JankStep(), this);
             getServer().getPluginManager().registerEvents(new PissCreepers(), this);
+            getServer().getPluginManager().registerEvents(new LapisElevators(config.getInt("options.elevator-range")), this);
+        }
+
+        // WIP Module
+        if (getConfig().getBoolean("modules.soontm")) {
+            getServer().getPluginManager().registerEvents(new MountTeleport(), this);
+            getServer().getPluginManager().registerEvents(new JankStep(), this);
+            getServer().getPluginManager().registerEvents(new LapisElevators(config.getInt("options.elevator-range")), this);
         }
 
         this.getCommand("geoextras").setExecutor(new GeoExtras(this));
@@ -71,13 +77,15 @@ public class Main extends JavaPlugin {
         config.addDefault("modules.farm", true);
         config.addDefault("modules.artifacts", true);
         config.addDefault("modules.chat", true);
-        config.addDefault("modules.jank", true);
+        config.addDefault("modules.silly", true);
         config.addDefault("modules.enchantments", true);
+        config.addDefault("modules.soontm", true);
         config.addDefault("options.strong-magnet-range", 4);
         config.addDefault("options.weak-magnet-range", 2);
         config.addDefault("options.sneak-disable-magnet", true);
         config.addDefault("options.growth-chance-percent",0.3);
         config.addDefault("options.scythe-range",4);
+        config.addDefault("options.elevator-range",50);
         config.addDefault("options.hewing-max-block-break", 50);
 
         config.options().copyDefaults(true);

@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 public class Explode implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("GeoPlugin.silly.explode")) {
+        if (sender.hasPermission("GeoExtras.silly.explode")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 Location splashZone = player.getLocation();

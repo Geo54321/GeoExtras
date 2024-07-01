@@ -12,7 +12,7 @@ public class MountTeleport implements Listener {
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("GeoPlugin.silly.mountTeleport")) {
+        if (player.hasPermission("GeoExtras.silly.mountTeleport")) {
             Entity mount = player.getVehicle();
             if (mount != null) {
                 if (mount instanceof AbstractHorse) {

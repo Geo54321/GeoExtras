@@ -45,7 +45,7 @@ public class GeoArtifact implements CommandExecutor, TabCompleter {
         }
         else if (args.length == 2) {
             if (isValidArtifact(args[0]) && isValidTarget(args[1])) {
-                if (sender.hasPermission("GeoPlugin.artifacts.staff")) {
+                if (sender.hasPermission("GeoExtras.artifacts.staff")) {
                     if (hasPerms(sender, args[0])) {
                         createArtifact(sender, args, true);
                     }
@@ -108,12 +108,12 @@ public class GeoArtifact implements CommandExecutor, TabCompleter {
     public boolean hasPerms(CommandSender sender, String type) {
         switch (type) {
             case "magnet":
-                if (sender.hasPermission("GeoPlugin.artifacts.magnet.strong") || sender.hasPermission("GeoPlugin.artifacts.magnet.weak")) {
+                if (sender.hasPermission("GeoExtras.artifacts.magnet.strong") || sender.hasPermission("GeoExtras.artifacts.magnet.weak")) {
                     return true;
                 }
                 break;
             case "zoomies":
-                if (sender.hasPermission("GeoPlugin.artifacts.zoomies.weak") || sender.hasPermission("GeoPlugin.artifacts.zoomies.strong") || sender.hasPermission("GeoPlugin.artifacts.zoomies.giga")) {
+                if (sender.hasPermission("GeoExtras.artifacts.zoomies.weak") || sender.hasPermission("GeoExtras.artifacts.zoomies.strong") || sender.hasPermission("GeoExtras.artifacts.zoomies.giga")) {
                     return true;
                 }
                 break;
