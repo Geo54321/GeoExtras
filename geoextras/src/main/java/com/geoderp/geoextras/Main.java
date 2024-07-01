@@ -79,7 +79,7 @@ public class Main extends JavaPlugin {
         config.addDefault("modules.chat", true);
         config.addDefault("modules.silly", true);
         config.addDefault("modules.enchantments", true);
-        config.addDefault("modules.soontm", true);
+        config.addDefault("modules.soontm", false);
         config.addDefault("options.strong-magnet-range", 4);
         config.addDefault("options.weak-magnet-range", 2);
         config.addDefault("options.sneak-disable-magnet", true);
