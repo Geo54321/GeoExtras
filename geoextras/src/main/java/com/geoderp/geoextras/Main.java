@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.geoderp.geoextras.Artifacts.*;
 import com.geoderp.geoextras.Chat.*;
 import com.geoderp.geoextras.Farm.*;
+import com.geoderp.geoextras.Misc.*;
 import com.geoderp.geoextras.Silly.*;
 
 import java.util.ArrayList;
@@ -60,7 +61,14 @@ public class Main extends JavaPlugin {
 
         // Enchantment Module
         if (getConfig().getBoolean("modules.enchantments")) {
-            
+            // Deathwoven -- soulbound
+            // Drain -- leech
+            // Forge -- autosmelt
+            // Hewing -- felling
+            // Quarrying -- hammer
+            // Paring -- leaf removal
+            // Illumination -- shield auto-place torches
+            // Faithful -- mount tp on death
         }
 
         // WIP Module

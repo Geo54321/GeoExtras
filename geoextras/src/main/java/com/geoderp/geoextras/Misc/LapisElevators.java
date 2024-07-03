@@ -1,4 +1,4 @@
-package com.geoderp.geoextras.Silly;
+package com.geoderp.geoextras.Misc;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

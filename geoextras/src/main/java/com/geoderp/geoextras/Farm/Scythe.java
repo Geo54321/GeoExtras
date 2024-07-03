@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,10 +26,17 @@ public class Scythe implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if(player.hasPermission("GeoExtras.farm.scythe")) {
-            if (event.getClickedBlock() != null) {
-                if (event.getClickedBlock().getType().equals(Material.SHORT_GRASS) || event.getClickedBlock().getType().equals(Material.TALL_GRASS) || event.getClickedBlock().getType().equals(Material.FERN) || event.getClickedBlock().getType().equals(Material.LARGE_FERN)) {
-                    if (player.getInventory().getItemInMainHand().getType().equals(Material.SHEARS) || player.getInventory().getItemInOffHand().getType().equals(Material.SHEARS)) {
-                        killGrass(event.getClickedBlock().getLocation());
+            // Has permission
+            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                // Right clicked
+                if (event.getClickedBlock() != null) {
+                    // Has a target block
+                    if (event.getClickedBlock().getType().equals(Material.SHORT_GRASS) || event.getClickedBlock().getType().equals(Material.TALL_GRASS) || event.getClickedBlock().getType().equals(Material.FERN) || event.getClickedBlock().getType().equals(Material.LARGE_FERN)) {
+                        // Target is a type of grass
+                        if (player.getInventory().getItemInMainHand().getType().equals(Material.SHEARS) || player.getInventory().getItemInOffHand().getType().equals(Material.SHEARS)) {
+                            // Is holding shears
+                            killGrass(event.getClickedBlock().getLocation());
+                        }
                     }
                 }
             }
