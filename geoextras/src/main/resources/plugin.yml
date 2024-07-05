@@ -1,6 +1,6 @@
 main: com.geoderp.geoextras.Main
 name: GeoExtras
-version: 1.21.4
+version: 1.21.5
 author: GeoDerp
 api-version: 1.21
 description: All of the extra goodies for GeoPlugin
@@ -55,6 +55,13 @@ commands:
       [gartifact, geotrinket, gtrinket]
     permission-message: I need to you to stop. That...command... it's making people nervous.
     usage: "Usage: /geoartifact (type)"
+  geomagic:
+    description: Used to create Magic'd items
+    permissions: GeoExtras.magic.command
+    aliases:
+      [gmagic]
+    permission-message: I need to you to stop. That...command... it's making people nervous.
+    usage: "Usage: /geomagic (type) (player)"
 permissions:
   GeoExtras.chat.poggers.others:
     description: Allow usage of poggers on others
@@ -98,6 +105,12 @@ permissions:
   GeoExtras.artifacts.zoomies.giga:
     description: Allows usage of speed 5 trinkets
     default: op
+  GeoExtras.magic.enchants.hewing:
+    description: Allows usage of hewing enchant
+    default: op
+  GeoExtras.magic.enchants.forge:
+    description: Allows usage of forge enchant
+    default: op
   GeoExtras.artifacts.*:
     description: Allows use of all artifacts
     default: op
@@ -138,6 +151,17 @@ permissions:
       GeoExtras.silly.jankStep: true
       GeoExtras.silly.explode: true
       GeoExtras.silly.elevators: true
+  GeoExtras.magic.enchants.*:
+    description: Allows usage of all magic enchants
+    default: op
+    children:
+      GeoExtras.magic.enchants.hewing: true
+  GeoExtras.magic.*:
+    description: Allows usage of all the magic of the plugin
+    default: op
+    children:
+      GeoExtras.magic.command: true
+      GeoExtras.magic.enchants.*: true
   GeoExtras.geoextras.*:
     description: Allows all of the GeoExtras command
     default: op
@@ -154,4 +178,5 @@ permissions:
       GeoExtras.misc.*: true
       GeoExtras.chat.*: true
       GeoExtras.silly.*: true
+      GeoExtras.magic.*: true
   

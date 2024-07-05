@@ -8,6 +8,7 @@ import com.geoderp.geoextras.Chat.*;
 import com.geoderp.geoextras.Farm.*;
 import com.geoderp.geoextras.Misc.*;
 import com.geoderp.geoextras.Silly.*;
+import com.geoderp.geoextras.Magic.*;
 
 import java.util.ArrayList;
 import java.io.File;
@@ -25,6 +26,8 @@ public class Main extends JavaPlugin {
         }
         loadDefaultConfigFile();
         saveDefaultConfig();
+
+        MagicList ml = new MagicList();
 
         // Farm Module
         if (getConfig().getBoolean("modules.farm")) {
@@ -61,6 +64,11 @@ public class Main extends JavaPlugin {
 
         // Enchantment Module
         if (getConfig().getBoolean("modules.enchantments")) {
+            this.getCommand("geomagic").setExecutor(new Caster());
+
+            getServer().getPluginManager().registerEvents(new Hewing(), this);
+            getServer().getPluginManager().registerEvents(new Forge(), this);
+
             // Deathwoven -- soulbound
             // Drain -- leech
             // Forge -- autosmelt

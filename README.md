@@ -98,6 +98,65 @@ In theory adds step assist like modded by teleporting the playe rup the block th
 ### Piss Creepers
 If you play the creeper explosion priming noise in a rapid loop say from a command block it kind of sounds like someone peeing. This adds yellow fireworks to their explosion to accomodate the sound.
 
+## Enchantment Module
+Adds custom enchants
+
+### Forge
+Smelt the drops of specific block types when broken with a tool with this enchantment.
+
+- Only usable on pickaxes
+- Conflicts with Fortune and Silk Touch enchantments
+
+#### Smeltable blocks:
+- Copper and Deepslate Copper Ores
+- Iron and Deepslate Iron Ores
+- Gold and Deepslate Gold Ores
+- Ancient Debris
+- Nether Gold Ore - Drops whole gold ingot instead
+
+### Hewing (WIP)
+Chops down the entire tree when break a log that is part of a tree.
+
+- Only usable on axes
+- No conflicts with other enchantments
+- Breaks up to 120 connected blocks (there is a config option for this)
+
+### Illumination (WIP)
+While holding an item with this enchant if you walk into a space with minimum block lighting, it will automatically place a torch from your inventory at your feet.
+
+- Only usable on shields
+- No conflicts with other enchantments
+
+### Death Woven (WIP)
+When you die with an item with the Death Woven enchantment in your inventory it will stay in your inventory when you respawn.
+
+- Usable on any item type
+- No conflicts with other enchantments
+
+### Drain (WIP)
+When you hit an enemy with an item with this enchantment it will heal 1 heart of damage.
+
+- Usable on swords
+- No conflicts with other enchantments
+
+### Quarrying (WIP)
+When you break a block with an item with the enchantment it will also break all 8 adjacent block at the same time. This functions similarly to hammers in modded minecraft.
+
+- Usable on pickaxes and shovels
+- No conflicts with other enchantments
+
+### Paring (WIP)
+When you break leaves with an item with this enchantment it will break all other leaves of the same type with a 5x5x5 centered on the originally broken leaf.
+
+- Usable on axes and hoes
+- No conflicts with other enchantments
+
+### Faithful (WIP)
+When you teleport while riding a mount with this enchantment the mount will teleport with you.
+
+- Usable on horse armor
+- No conflicts with other enchantments
+
 
 # All Permission Nodes as a Tree
 - GeoExtras.*
@@ -124,6 +183,18 @@ If you play the creeper explosion priming noise in a rapid loop say from a comma
         - GeoExtras.silly.mountTeleport -- Allows mounts to teleport with the player
         - GeoExtras.silly.jankStep -- Allows jank step to activate
         - GeoExtras.silly.explode -- Allows usage of /explode
+    - GeoExtras.magic.enchants.*
+        - GeoMagic.magic.enchants.forge -- Allows usage of forge enchant
+        - GeoMagic.magic.enchants.hewing -- Allows usage of hewing enchant
+        - GeoMagic.magic.enchants.illumination -- Allows usage of illumination enchant
+        - GeoMagic.magic.enchants.deathwoven -- Allows usage of deathwoven enchant
+        - GeoMagic.magic.enchants.drain -- Allows usage of drain enchant
+        - GeoMagic.magic.enchants.quarrying -- Allows usage of quarrying enchant
+        - GeoMagic.magic.enchants.paring -- Allows usage of paring enchant
+        - GeoMagic.magic.enchants.faithful -- Allows usage of faithful enchant
+    - GeoExtras.magic.*
+        - GeoExtras.magic.enchants.*
+        - GeoExtras.magic.command
     - GeoExtras.geoextras.*
         - GeoExtras.geoextras -- Allows use of /geoextras
         - GeoExtras.geoextras.reload -- Allows reload of config file

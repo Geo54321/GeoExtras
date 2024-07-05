@@ -67,7 +67,7 @@ public class LapisElevators implements Listener {
             
             if (target.getType().equals(Material.LAPIS_BLOCK)) {
                 // Is valid elevator block
-                if (target.getRelative(BlockFace.UP).getType().equals(Material.AIR) && target.getRelative(BlockFace.UP,2).getType().equals(Material.AIR)) {
+                if (!target.getRelative(BlockFace.UP).getType().isOccluding() && !target.getRelative(BlockFace.UP,2).getType().isOccluding()) {
                     // Has air gap above elevator - valid elevator
                     return target;
                 }
