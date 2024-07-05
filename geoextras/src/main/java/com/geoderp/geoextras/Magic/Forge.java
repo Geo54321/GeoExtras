@@ -21,7 +21,6 @@ public class Forge implements Listener {
             ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
             if (isForgeItem(tool)) {
                 if (isForgableBlock(event.getBlock().getType())) {
-                    event.getPlayer().sendMessage("We're forging now boys");
                     event.setDropItems(false);
                     doForge(event.getBlock(), tool);
                 }

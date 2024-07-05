@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -20,7 +21,7 @@ public class Hewing implements Listener {
                 // Block was broken with hewing item
                 if (isTree(event.getBlock().getLocation())) {
                     // Block was part of a tree
-                    event.getPlayer().sendMessage("Valid 'Hewing' item. Poggers");
+                    doHew(event.getBlock());
                 }
             }
         }
@@ -56,5 +57,9 @@ public class Hewing implements Listener {
             }
         }
         return false;
+    }
+
+    public void doHew(Block block) {
+
     }
 }
