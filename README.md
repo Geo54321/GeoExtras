@@ -114,7 +114,7 @@ Smelt the drops of specific block types when broken with a tool with this enchan
 - Ancient Debris
 - Nether Gold Ore - Drops whole gold ingot instead
 
-### Hewing (WIP)
+### Hewing
 Chops down the entire tree when break a log that is part of a tree.
 
 - Only usable on axes

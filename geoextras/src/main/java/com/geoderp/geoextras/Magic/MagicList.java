@@ -13,6 +13,7 @@ public class MagicList {
     public MagicList() {
         magic.add(createHewing());
         magic.add(createForge());
+        magic.add(createIllumination());
 
         magicStrings = getNames();
     }
@@ -60,5 +61,14 @@ public class MagicList {
         forge.setConflicts(conflicts);
 
         return forge;
+    }
+
+    private Magic createIllumination() {
+        Magic illumination = new Magic("illumination");
+        illumination.setLore("§fIllumination");
+        illumination.setBaseTypes(new BaseType[]{BaseType.shield});
+        illumination.setConflicts(null);
+
+        return illumination;
     }
 }

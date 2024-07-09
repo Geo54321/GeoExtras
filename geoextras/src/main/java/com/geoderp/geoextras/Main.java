@@ -66,17 +66,23 @@ public class Main extends JavaPlugin {
         if (getConfig().getBoolean("modules.enchantments")) {
             this.getCommand("geomagic").setExecutor(new Caster());
 
-            getServer().getPluginManager().registerEvents(new Hewing(), this);
+            getServer().getPluginManager().registerEvents(new Hewing(config.getInt("options.hewing-max-block-break")), this);
             getServer().getPluginManager().registerEvents(new Forge(), this);
+            getServer().getPluginManager().registerEvents(new Illumination(), this);
 
+            // to do 
             // Deathwoven -- soulbound
             // Drain -- leech
-            // Forge -- autosmelt
-            // Hewing -- felling
             // Quarrying -- hammer
             // Paring -- leaf removal
             // Illumination -- shield auto-place torches
             // Faithful -- mount tp on death
+            // Damp -- turns dirt into mud
+            // Prospecting -- vein mine
+
+            // done
+            // Forge -- autosmelt
+            // Hewing -- felling
         }
 
         // WIP Module
@@ -111,7 +117,7 @@ public class Main extends JavaPlugin {
         config.addDefault("options.growth-chance-percent",0.3);
         config.addDefault("options.scythe-range",4);
         config.addDefault("options.elevator-range",50);
-        config.addDefault("options.hewing-max-block-break", 50);
+        config.addDefault("options.hewing-max-block-break", 150);
 
         config.options().copyDefaults(true);
         saveConfig();

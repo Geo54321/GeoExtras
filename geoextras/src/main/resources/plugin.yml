@@ -1,6 +1,6 @@
 main: com.geoderp.geoextras.Main
 name: GeoExtras
-version: 1.21.5
+version: 1.21.6
 author: GeoDerp
 api-version: 1.21
 description: All of the extra goodies for GeoPlugin
@@ -111,6 +111,9 @@ permissions:
   GeoExtras.magic.enchants.forge:
     description: Allows usage of forge enchant
     default: op
+  GeoExtras.magic.enchants.illumination:
+    description: Allows usage of illumination enchant
+    default: op
   GeoExtras.artifacts.*:
     description: Allows use of all artifacts
     default: op
@@ -156,6 +159,8 @@ permissions:
     default: op
     children:
       GeoExtras.magic.enchants.hewing: true
+      GeoExtras.magic.enchants.forge: true
+      GeoExtras.magic.enchants.illumination: true
   GeoExtras.magic.*:
     description: Allows usage of all the magic of the plugin
     default: op
