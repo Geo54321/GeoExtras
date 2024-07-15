@@ -63,6 +63,14 @@ Allows right click harvesting and auto-replanting of the crops listed below.
 ### Bonemeal Other Things
 Allows bonemealing to duplicate lily pads and all small flowers except wither roses.
 
+### "Moist" Heart of the Sea
+Right clicking a block with a heart of the sea will "moisten" all blocks in a 3x1x3 that are exposed to the air on top. 
+
+#### "Moisten" Effect types:
+- Dirt -> Mud
+- Lava -> Obsidian
+- Concrete Powder -> Concrete
+
 ## Misc Module
 Contains misc features that don't fit into other categories
 
@@ -121,19 +129,19 @@ Chops down the entire tree when break a log that is part of a tree.
 - No conflicts with other enchantments
 - Breaks up to 120 connected blocks (there is a config option for this)
 
-### Illumination (WIP)
+### Illumination
 While holding an item with this enchant if you walk into a space with minimum block lighting, it will automatically place a torch from your inventory at your feet.
 
 - Only usable on shields
 - No conflicts with other enchantments
 
-### Death Woven (WIP)
+### Death Woven
 When you die with an item with the Death Woven enchantment in your inventory it will stay in your inventory when you respawn.
 
 - Usable on any item type
 - No conflicts with other enchantments
 
-### Drain (WIP)
+### Drain
 When you hit an enemy with an item with this enchantment it will heal 1 heart of damage.
 
 - Usable on swords
@@ -179,6 +187,7 @@ When you teleport while riding a mount with this enchantment the mount will tele
         - GeoExtras.farm.harvest -- Allows usage of right click harvest
         - GeoExtras.farm.frow -- Allows usage of the extra bonemeal growth
         - GeoExtras.farm.scythe -- Allows usage of the shear scythe
+        - GeoExtras.farm.moist -- Allows usage of the moist heart of the sea
     - GeoExtras.silly.*
         - GeoExtras.silly.mountTeleport -- Allows mounts to teleport with the player
         - GeoExtras.silly.jankStep -- Allows jank step to activate
