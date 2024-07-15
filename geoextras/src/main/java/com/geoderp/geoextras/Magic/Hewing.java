@@ -41,7 +41,7 @@ public class Hewing implements Listener {
                 if(meta.hasLore()) {
                     List<String> lore = meta.getLore();
                     for (String line : lore) {
-                        if (line.equals("§2Hewing")) {
+                        if (line.equals(MagicList.getMagicByString("hewing").getLore())) {
                             return true;
                         }
                     }

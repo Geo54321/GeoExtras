@@ -14,6 +14,8 @@ public class MagicList {
         magic.add(createHewing());
         magic.add(createForge());
         magic.add(createIllumination());
+        magic.add(createDrain());
+        magic.add(createDeathWoven());
 
         magicStrings = getNames();
     }
@@ -70,5 +72,23 @@ public class MagicList {
         illumination.setConflicts(null);
 
         return illumination;
+    }
+
+    private Magic createDrain() {
+        Magic drain = new Magic("drain");
+        drain.setLore("§4Drain");
+        drain.setBaseTypes(new BaseType[]{BaseType.sword, BaseType.axe});
+        drain.setConflicts(null);
+
+        return drain;
+    }
+
+    private Magic createDeathWoven() {
+        Magic deathwoven = new Magic("deathwoven");
+        deathwoven.setLore("§8Death Woven");
+        deathwoven.setBaseTypes(BaseType.values());
+        deathwoven.setConflicts(null);
+
+        return deathwoven;
     }
 }

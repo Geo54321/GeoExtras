@@ -7,7 +7,7 @@ import org.bukkit.Material;
 public class ArtifactRequirements {
     // Magnet Stuff
     public static Material[] validStrongMagnetMaterials = {Material.ENCHANTED_GOLDEN_APPLE, Material.NETHER_STAR, Material.NETHERITE_INGOT};
-    public static Material[] validWeakMagnetMaterials = {Material.RABBIT_FOOT, Material.HEART_OF_THE_SEA, Material.GHAST_TEAR, Material.NAUTILUS_SHELL};
+    public static Material[] validWeakMagnetMaterials = {Material.RABBIT_FOOT, Material.GHAST_TEAR, Material.NAUTILUS_SHELL};
     public static String magnetName = "§dGeoMagnet";
     public static String magnetLoreString = "§5GeoMagnet";
     public static ArrayList<String> magnetLore = createMagnetLoreList();

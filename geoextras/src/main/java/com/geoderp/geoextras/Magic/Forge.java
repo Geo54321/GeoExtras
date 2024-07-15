@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,7 +36,7 @@ public class Forge implements Listener {
                 if(meta.hasLore()) {
                     List<String> lore = meta.getLore();
                     for (String line : lore) {
-                        if (line.equals("§6Forge")) {
+                        if (line.equals(MagicList.getMagicByString("forge").getLore())) {
                             return true;
                         }
                     }
@@ -84,5 +85,7 @@ public class Forge implements Listener {
                 }
             }
         }
+
+        block.getWorld().spawnParticle(Particle.FLAME, block.getLocation().add(0.5,0.5,0.5), (int) (5 + Math.random() * 5),0.25,0.25,0.25, 0);
     }
 }

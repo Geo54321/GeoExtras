@@ -34,6 +34,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Harvest(), this);
             getServer().getPluginManager().registerEvents(new ExtraGrow(this), this);
             getServer().getPluginManager().registerEvents(new Scythe(this), this);
+            getServer().getPluginManager().registerEvents(new Moist(), this);
         }
 
         // Artifacts Module
@@ -69,20 +70,23 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Hewing(config.getInt("options.hewing-max-block-break")), this);
             getServer().getPluginManager().registerEvents(new Forge(), this);
             getServer().getPluginManager().registerEvents(new Illumination(), this);
+            getServer().getPluginManager().registerEvents(new Drain(), this);
+            getServer().getPluginManager().registerEvents(new Deathwoven(), this);
 
             // to do 
-            // Deathwoven -- soulbound
-            // Drain -- leech
-            // Quarrying -- hammer
             // Paring -- leaf removal
-            // Illumination -- shield auto-place torches
-            // Faithful -- mount tp on death
-            // Damp -- turns dirt into mud
             // Prospecting -- vein mine
+
+            // probably not happening
+            // Faithful -- mount tp on death
+            // Quarrying -- hammer
 
             // done
             // Forge -- autosmelt
             // Hewing -- felling
+            // Illumination -- shield auto-place torches
+            // Drain -- leech
+            // Deathwoven -- soulbound
         }
 
         // WIP Module

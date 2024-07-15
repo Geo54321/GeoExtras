@@ -17,15 +17,12 @@ public class Illumination implements Listener {
         Player player = event.getPlayer();
         if (player.hasPermission("GeoExtras.magic.enchants.illumination")) {
             // has perms
-            player.sendMessage("has perms");
             if (isIlluminationItem(player.getInventory().getItemInOffHand())) {
                 // offhand item is an illumination item
                 if (isDark(player)) {
-                    player.sendMessage("is dark");
                     // is in complete darkness
                     if (hasTorches(player) && isPlaceableFloor(player)) {
                         // player has torches and the floor is solid and has air above it
-                        player.sendMessage("Let there be light");
                         illuminate(player);
                     }
                 }
@@ -40,7 +37,7 @@ public class Illumination implements Listener {
                 if(meta.hasLore()) {
                     List<String> lore = meta.getLore();
                     for (String line : lore) {
-                        if (line.equals("§fIllumination")) {
+                        if (line.equals(MagicList.getMagicByString("illumination").getLore())) {
                             return true;
                         }
                     }
@@ -60,7 +57,6 @@ public class Illumination implements Listener {
     } 
 
     public boolean hasTorches(Player player) {
-        player.sendMessage("has torch");
         return player.getInventory().contains(Material.TORCH);
     }
 
@@ -68,9 +64,7 @@ public class Illumination implements Listener {
         Block floor = player.getLocation().getBlock().getRelative(0,-1,0);
 
         if (floor.getType().isSolid()) {
-            player.sendMessage("solid floor");
             if (floor.getRelative(0,1,0).getType().equals(Material.AIR)) {
-                player.sendMessage("empty feet");
                 return true;
             }
         }

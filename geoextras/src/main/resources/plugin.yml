@@ -1,6 +1,6 @@
 main: com.geoderp.geoextras.Main
 name: GeoExtras
-version: 1.21.6
+version: 1.21.7
 author: GeoDerp
 api-version: 1.21
 description: All of the extra goodies for GeoPlugin
@@ -78,6 +78,9 @@ permissions:
   GeoExtras.farm.scythe:
     description: Allows usage of the shear scythes
     default: op
+  GeoExtras.farm.moist:
+    description: Allows usage of the moist buckets
+    default: op
   GeoExtras.silly.mountTeleport:
     description: Allows usage of teleporting mounts
     default: op
@@ -114,6 +117,12 @@ permissions:
   GeoExtras.magic.enchants.illumination:
     description: Allows usage of illumination enchant
     default: op
+  GeoExtras.magic.enchants.drain:
+    description: Allows usage of drain enchant
+    default: op
+  GeoExtras.magic.enchants.deathwoven:
+    description: Allows usage of deathwoven enchant
+    default: op
   GeoExtras.artifacts.*:
     description: Allows use of all artifacts
     default: op
@@ -132,6 +141,7 @@ permissions:
       GeoExtras.farm.harvest: true
       GeoExtras.farm.grow: true
       GeoExtras.farm.scythe: true
+      GeoExtras.farm.moist: true
   GeoExtras.chat.*:
     description: Allows use of all parts of the chat module
     default: op
@@ -161,6 +171,8 @@ permissions:
       GeoExtras.magic.enchants.hewing: true
       GeoExtras.magic.enchants.forge: true
       GeoExtras.magic.enchants.illumination: true
+      GeoExtras.magic.enchants.drain: true
+      GeoExtras.magic.enchants.deathwoven: true
   GeoExtras.magic.*:
     description: Allows usage of all the magic of the plugin
     default: op

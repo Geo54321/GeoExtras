@@ -24,7 +24,8 @@ public class Magic {
         chest,
         pants,
         shield,
-        horse
+        horse,
+        bow
     }
 
     public Magic(String name) {
