@@ -147,16 +147,36 @@ When you hit an enemy with an item with this enchantment it will heal 1 heart of
 - Usable on swords
 - No conflicts with other enchantments
 
+### Prospecting
+This enchant gives vein miner but only for ores and configurably "rare" stone types.
+
+- Usable on picks
+- No conflicts with other enchantments
+
+#### Ore Types
+- Basic Ore Types (Coal, Copper, Iron, Gold, Lapis, Redstone, Emerald, Diamond)
+- Deepslate Ore Types (Coal, Copper, Iron, Gold, Lapis, Redstone, Emerald, Diamond)
+- Nether Ores (Nether Gold, Nether Quartz, Ancient Debris)
+- Amethyst Blocks (not the ones that spawn new amethyst)
+- Raw Iron Blocks
+
+#### Stone Types
+- Andesite
+- Diorite
+- Granite
+- Tuff
+- Magma Blocks
+
+### Paring
+When you break leaves with an item with this enchantment it will break all other leaves of the same type with a 5x5x5 centered on the originally broken leaf.
+
+- Usable on axes and hoes
+- No conflicts with other enchantments
+
 ### Quarrying (WIP)
 When you break a block with an item with the enchantment it will also break all 8 adjacent block at the same time. This functions similarly to hammers in modded minecraft.
 
 - Usable on pickaxes and shovels
-- No conflicts with other enchantments
-
-### Paring (WIP)
-When you break leaves with an item with this enchantment it will break all other leaves of the same type with a 5x5x5 centered on the originally broken leaf.
-
-- Usable on axes and hoes
 - No conflicts with other enchantments
 
 ### Faithful (WIP)

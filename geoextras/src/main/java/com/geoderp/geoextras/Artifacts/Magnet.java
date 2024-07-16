@@ -11,25 +11,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class Magnet implements Listener {
-    JavaPlugin plugin;
     private int weakRange;
     private int strongRange;
+    private boolean sneakDisable;
     private Material[] validStrongMaterials = ArtifactRequirements.validStrongMagnetMaterials;
     private Material[] validWeakMaterials = ArtifactRequirements.validWeakMagnetMaterials;
 
-    public Magnet(JavaPlugin plugin) {
-        this.plugin = plugin;
-        this.weakRange = plugin.getConfig().getInt("options.weak-magnet-range");
-        this.strongRange = plugin.getConfig().getInt("options.strong-magnet-range");
+    public Magnet(int weakRange, int strongRange, boolean sneakDisable) {
+        this.weakRange = weakRange;
+        this.strongRange = strongRange;
+        this.sneakDisable = sneakDisable;
     }
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (plugin.getConfig().getBoolean("options.sneak-disable-magnet") && player.isSneaking()) {
+        if (sneakDisable && player.isSneaking()) {
             // Don't do magnet
         }
         else {

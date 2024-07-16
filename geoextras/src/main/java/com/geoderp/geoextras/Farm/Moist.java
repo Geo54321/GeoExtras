@@ -54,7 +54,8 @@ public class Moist implements Listener {
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
                 Block curr = origin.getRelative(x, 0, z);
-                if (curr.getRelative(0,1,0).getType().equals(Material.AIR)) {
+                Block above = curr.getRelative(0,1,0);
+                if (above.getType().equals(Material.AIR) || above.getType().equals(Material.CAVE_AIR) || above.getType().equals(Material.VOID_AIR)) {
                     boolean didSwap = true;
                     switch (curr.getType()) {
                         case LAVA:

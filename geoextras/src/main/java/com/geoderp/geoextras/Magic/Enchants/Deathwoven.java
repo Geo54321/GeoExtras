@@ -1,4 +1,4 @@
-package com.geoderp.geoextras.Magic;
+package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,9 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.geoderp.geoextras.Magic.MagicList;
+import com.geoderp.geoextras.Magic.PlayerTempventory;
 
 public class Deathwoven implements Listener {
     private List<PlayerTempventory> tempInventories = new ArrayList<PlayerTempventory>();

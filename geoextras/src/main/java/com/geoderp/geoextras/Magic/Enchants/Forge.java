@@ -1,4 +1,4 @@
-package com.geoderp.geoextras.Magic;
+package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,10 +15,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.geoderp.geoextras.Magic.MagicList;
+
 public class Forge implements Listener {
     @EventHandler
-    public void onPlayerInteract(BlockBreakEvent event) {
-        if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.*")) {
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.forge")) {
             ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
             if (isForgeItem(tool)) {
                 if (isForgableBlock(event.getBlock().getType())) {

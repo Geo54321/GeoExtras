@@ -13,13 +13,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class Scythe implements Listener {
-    JavaPlugin plugin;
+    int scytheRange;
 
-    public Scythe(JavaPlugin plugin) {
-        this.plugin = plugin;
+    public Scythe(int scytheRange) {
+        this.scytheRange = scytheRange;
     }
 
     @EventHandler
@@ -44,10 +43,9 @@ public class Scythe implements Listener {
     }
 
     public void killGrass(Location origin) {
-        int range = plugin.getConfig().getInt("options.scythe-range");
-        for(int x = (range * -1); x <= range; x++) {
-            for(int y = (range * -1); y <= range; y++) {
-                for(int z = (range * -1); z <= range; z++) {
+        for(int x = (scytheRange * -1); x <= scytheRange; x++) {
+            for(int y = (scytheRange * -1); y <= scytheRange; y++) {
+                for(int z = (scytheRange * -1); z <= scytheRange; z++) {
                     //Location target = new Location(origin.getWorld(), origin.getX()+x, origin.getY()+y, origin.getZ()+z);
                     Block target = origin.getWorld().getBlockAt(origin.getBlockX()+x, origin.getBlockY()+y, origin.getBlockZ()+z);
                     if(target.getType().equals(Material.TALL_GRASS) || target.getType().equals(Material.LARGE_FERN)) {

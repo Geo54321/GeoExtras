@@ -16,6 +16,9 @@ public class MagicList {
         magic.add(createIllumination());
         magic.add(createDrain());
         magic.add(createDeathWoven());
+        magic.add(createProspecting());
+        magic.add(createParing());
+        magic.add(createQuarry());
 
         magicStrings = getNames();
     }
@@ -85,10 +88,38 @@ public class MagicList {
 
     private Magic createDeathWoven() {
         Magic deathwoven = new Magic("deathwoven");
-        deathwoven.setLore("§8Death Woven");
+        deathwoven.setLore("§8Deathwoven");
         deathwoven.setBaseTypes(BaseType.values());
         deathwoven.setConflicts(null);
 
         return deathwoven;
+    }
+
+    private Magic createProspecting() {
+        Magic prospecting = new Magic("prospecting");
+        prospecting.setLore("§eProspecting");
+        prospecting.setBaseTypes(new BaseType[]{BaseType.pick});
+        prospecting.setConflicts(null);
+
+        return prospecting;
+    }
+
+    private Magic createParing() {
+        Magic paring = new Magic("paring");
+        paring.setLore("§aParing");
+        paring.setBaseTypes(new BaseType[]{BaseType.axe});
+        paring.setConflicts(null);
+
+        return paring;
+    }
+
+    private Magic createQuarry() {
+        Magic quarrying = new Magic("quarrying");
+        quarrying.setLore("§7Quarrying");
+        quarrying.setBaseTypes(new BaseType[]{BaseType.pick});
+        Enchantment[] conflicts = {Enchantment.FORTUNE, Enchantment.SILK_TOUCH};
+        quarrying.setConflicts(conflicts);
+
+        return quarrying;
     }
 }

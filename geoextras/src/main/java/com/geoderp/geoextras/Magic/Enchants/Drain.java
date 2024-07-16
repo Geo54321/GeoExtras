@@ -1,8 +1,7 @@
-package com.geoderp.geoextras.Magic;
+package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.List;
 
-import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -11,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.geoderp.geoextras.Magic.MagicList;
 
 public class Drain implements Listener {
     @EventHandler

@@ -1,6 +1,6 @@
 main: com.geoderp.geoextras.Main
 name: GeoExtras
-version: 1.21.7
+version: 1.21.8
 author: GeoDerp
 api-version: 1.21
 description: All of the extra goodies for GeoPlugin
@@ -123,6 +123,15 @@ permissions:
   GeoExtras.magic.enchants.deathwoven:
     description: Allows usage of deathwoven enchant
     default: op
+  GeoExtras.magic.enchants.prospecting:
+    description: Allows usage of prospecting enchant
+    default: op
+  GeoExtras.magic.enchants.paring:
+    description: Allows usage of paring enchant
+    default: op
+  GeoExtras.magic.enchants.quarrying:
+    description: Allows usage of quarrying enchant
+    default: op
   GeoExtras.artifacts.*:
     description: Allows use of all artifacts
     default: op
@@ -173,6 +182,9 @@ permissions:
       GeoExtras.magic.enchants.illumination: true
       GeoExtras.magic.enchants.drain: true
       GeoExtras.magic.enchants.deathwoven: true
+      GeoExtras.magic.enchants.prospecting: true
+      GeoExtras.magic.enchants.paring: true
+      GeoExtras.magic.enchants.quarrying: true
   GeoExtras.magic.*:
     description: Allows usage of all the magic of the plugin
     default: op

@@ -1,4 +1,4 @@
-package com.geoderp.geoextras.Magic;
+package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.geoderp.geoextras.Magic.MagicList;
 
 public class Illumination implements Listener {
     @EventHandler
@@ -64,7 +66,8 @@ public class Illumination implements Listener {
         Block floor = player.getLocation().getBlock().getRelative(0,-1,0);
 
         if (floor.getType().isSolid()) {
-            if (floor.getRelative(0,1,0).getType().equals(Material.AIR)) {
+            Block footspace = floor.getRelative(0, 1, 0);
+            if (footspace.getType().equals(Material.AIR) || footspace.getType().equals(Material.CAVE_AIR) || footspace.getType().equals(Material.VOID_AIR)) {
                 return true;
             }
         }

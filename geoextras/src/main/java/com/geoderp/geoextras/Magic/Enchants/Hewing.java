@@ -1,17 +1,18 @@
-package com.geoderp.geoextras.Magic;
+package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.geoderp.geoextras.Magic.MagicList;
 
 public class Hewing implements Listener {
     private int maxBlocks;
@@ -28,7 +29,7 @@ public class Hewing implements Listener {
                 // Block was broken with hewing item
                 if (isTree(event.getBlock())) {
                     // Block was part of a tree
-                    doHew(event.getBlock(), event.getPlayer());
+                    doHew(event.getBlock());
                 }
             }
         }
@@ -74,24 +75,24 @@ public class Hewing implements Listener {
         return false;
     }
 
-    public boolean isTree(Block block) {
-        Material original = block.getType();
+    public boolean isTree(Block origin) {
+        Material original = origin.getType();
         int height = 0;
-        while (block.getRelative(0,height,0).getType().equals(original)) {
+        while (origin.getRelative(0,height,0).getType().equals(original)) {
             height++;
             if (height > maxBlocks) {
                 return false;
             }
-            if (isLeaf(block.getRelative(0,height,0).getType())) {
+            if (isLeaf(origin.getRelative(0,height,0).getType())) {
                 return true;
             }
         }
 
-        return acaciaSucks(block.getRelative(0,height,0));
+        return acaciaSucks(origin.getRelative(0,height,0));
     }
 
-    public void doHew(Block block, Player player) {
-        ArrayList<Block> tree = getEveryTreeBlock(block);
+    public void doHew(Block origin) {
+        ArrayList<Block> tree = getEveryTreeBlock(origin);
 
         if (tree == null) {
             // Tree was too big
@@ -102,9 +103,9 @@ public class Hewing implements Listener {
         }
     }
 
-    public ArrayList<Block> getEveryTreeBlock(Block original) {
+    public ArrayList<Block> getEveryTreeBlock(Block origin) {
         ArrayList<Block> treeBlocks = new ArrayList<Block>();
-        treeBlocks.add(original);
+        treeBlocks.add(origin);
 
         for (int g = 0; g < treeBlocks.size(); g++) {
             ArrayList<Block> temp = getNearbyBlocks(treeBlocks.get(g));
@@ -121,15 +122,15 @@ public class Hewing implements Listener {
         return treeBlocks;
     }
 
-    public ArrayList<Block> getNearbyBlocks(Block original) {
+    public ArrayList<Block> getNearbyBlocks(Block origin) {
         ArrayList<Block> validBlocks = new ArrayList<Block>();
-        Material originalType = original.getType();
+        Material originalType = origin.getType();
 
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 for (int z = -1; z <= 1; z++) {
-                    if (original.getRelative(x, y, z).getType().equals(originalType)) {
-                        validBlocks.add(original.getRelative(x, y, z));
+                    if (origin.getRelative(x, y, z).getType().equals(originalType)) {
+                        validBlocks.add(origin.getRelative(x, y, z));
                     }
                 }
             }

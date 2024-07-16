@@ -9,6 +9,7 @@ import com.geoderp.geoextras.Farm.*;
 import com.geoderp.geoextras.Misc.*;
 import com.geoderp.geoextras.Silly.*;
 import com.geoderp.geoextras.Magic.*;
+import com.geoderp.geoextras.Magic.Enchants.*;
 
 import java.util.ArrayList;
 import java.io.File;
@@ -32,15 +33,15 @@ public class Main extends JavaPlugin {
         // Farm Module
         if (getConfig().getBoolean("modules.farm")) {
             getServer().getPluginManager().registerEvents(new Harvest(), this);
-            getServer().getPluginManager().registerEvents(new ExtraGrow(this), this);
-            getServer().getPluginManager().registerEvents(new Scythe(this), this);
+            getServer().getPluginManager().registerEvents(new ExtraGrow(config.getDouble("options.growth-chance-percent")), this);
+            getServer().getPluginManager().registerEvents(new Scythe(config.getInt("options.scythe-range")), this);
             getServer().getPluginManager().registerEvents(new Moist(), this);
         }
 
         // Artifacts Module
         if (getConfig().getBoolean("modules.artifacts")) {
             this.getCommand("geoartifact").setExecutor(new GeoArtifact());
-            getServer().getPluginManager().registerEvents(new Magnet(this), this);
+            getServer().getPluginManager().registerEvents(new Magnet(config.getInt("options.weak-magnet-range"),config.getInt("options.strong-magnet-range"),config.getBoolean("options.sneak-disable-magnet")), this);
             getServer().getPluginManager().registerEvents(new Zoomies(), this);
         }
 
@@ -72,14 +73,13 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Illumination(), this);
             getServer().getPluginManager().registerEvents(new Drain(), this);
             getServer().getPluginManager().registerEvents(new Deathwoven(), this);
-
-            // to do 
-            // Paring -- leaf removal
-            // Prospecting -- vein mine
+            getServer().getPluginManager().registerEvents(new Prospecting(config.getInt("options.prospecting-max-block-break"), config.getBoolean("options.prospecting-stone-type")), this);
+            getServer().getPluginManager().registerEvents(new Paring(), this);
+            getServer().getPluginManager().registerEvents(new Quarrying(), this);
 
             // probably not happening
             // Faithful -- mount tp on death
-            // Quarrying -- hammer
+            
 
             // done
             // Forge -- autosmelt
@@ -87,6 +87,9 @@ public class Main extends JavaPlugin {
             // Illumination -- shield auto-place torches
             // Drain -- leech
             // Deathwoven -- soulbound
+            // Paring -- leaf removal
+            // Prospecting -- vein mine
+            // Quarrying -- hammer
         }
 
         // WIP Module
@@ -122,6 +125,8 @@ public class Main extends JavaPlugin {
         config.addDefault("options.scythe-range",4);
         config.addDefault("options.elevator-range",50);
         config.addDefault("options.hewing-max-block-break", 150);
+        config.addDefault("options.prospecting-max-block-break", 50);
+        config.addDefault("options.prospecting-stone-type", true);
 
         config.options().copyDefaults(true);
         saveConfig();

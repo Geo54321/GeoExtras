@@ -7,14 +7,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExtraGrow implements Listener {
-    JavaPlugin plugin;
+    double growthChance;
     Material[] validMaterials = {Material.LILY_PAD, Material.OXEYE_DAISY, Material.CORNFLOWER, Material.BLUE_ORCHID, Material.AZURE_BLUET, Material.WHITE_TULIP, Material.ALLIUM, Material.LILAC, Material.ORANGE_TULIP, Material.PINK_TULIP, Material.POPPY, Material.RED_TULIP, Material.LILY_OF_THE_VALLEY, Material.DANDELION};
 
-    public ExtraGrow(JavaPlugin plugin) {
-        this.plugin = plugin;
+    public ExtraGrow(double growthChance) {
+        this.growthChance = growthChance;
     }
 
     @EventHandler
@@ -25,7 +24,7 @@ public class ExtraGrow implements Listener {
                     Material target = event.getClickedBlock().getType();
                     if (isValidGrow(target)) {
                         event.getItem().setAmount(event.getItem().getAmount() - 1);
-                        if (Math.random() <= plugin.getConfig().getDouble("options.growth-chance-percent")) {
+                        if (Math.random() <= growthChance) {
                             event.getClickedBlock().getWorld().dropItemNaturally(event.getClickedBlock().getLocation(), new ItemStack(target, 1));
                             event.getClickedBlock().getWorld().playSound(event.getClickedBlock().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, (float) 0.15, (float) 0.75);
                         }
