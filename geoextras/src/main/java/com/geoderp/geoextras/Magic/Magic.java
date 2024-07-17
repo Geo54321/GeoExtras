@@ -1,10 +1,12 @@
 package com.geoderp.geoextras.Magic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Magic {
@@ -102,5 +104,41 @@ public class Magic {
             default:
                 return null;
         }
+    }
+
+    public boolean isMagicItem(ItemStack item) {
+        if (item != null) {
+            if (item.hasItemMeta()) {
+                ItemMeta meta = item.getItemMeta();
+                if(meta.hasLore()) {
+                    List<String> lore = meta.getLore();
+                    for (String line : lore) {
+                        if (line.equals(this.lore.get(0))) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void damageItem(ItemStack item, int amount) {
+        // Unbreaking check and reductions
+        if (item.containsEnchantment(Enchantment.UNBREAKING)) {
+            int level = item.getEnchantmentLevel(Enchantment.UNBREAKING);
+            int count = 0;
+            for (int g = 0; g < amount; g++) {
+                if ((Math.random()*100) > (100/(level+1))) {
+                    count++;
+                }
+            }
+            amount = count;
+        }
+
+        // Reduce durability
+        Damageable dmg = (Damageable) item.getItemMeta();
+        dmg.setDamage(dmg.getDamage() + amount);
+        item.setItemMeta(dmg);
     }
 }

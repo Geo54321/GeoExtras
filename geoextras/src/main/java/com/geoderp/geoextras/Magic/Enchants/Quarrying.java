@@ -11,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 
@@ -46,7 +45,7 @@ public class Quarrying implements Listener {
         if (player.hasPermission("GeoExtras.magic.enchants.quarrying")) {
             // Has perms
             ItemStack tool = player.getInventory().getItemInMainHand();
-            if (isQuarryingItem(tool)) {
+            if (isEnchantedItem(tool)) {
                 // Using quarrying item
                 List<Block> lastBlocks = player.getLastTwoTargetBlocks(null, 5);
                 BlockFace face = lastBlocks.get(1).getFace(lastBlocks.get(0));
@@ -55,22 +54,8 @@ public class Quarrying implements Listener {
         }
     }
 
-    public boolean isQuarryingItem(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("quarrying").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("quarrying").isMagicItem(item);
     }
 
     public boolean validQuarry(Material origin) {
@@ -84,6 +69,7 @@ public class Quarrying implements Listener {
     }
 
     public void doQuarry(Block origin, BlockFace dir, ItemStack tool) {
+        int count = 0;
         switch (dir) {
             case UP:
             case DOWN:
@@ -93,6 +79,7 @@ public class Quarrying implements Listener {
                         Block curr = origin.getRelative(x,0,z);
                         if (validQuarry(curr.getType())) {
                             curr.breakNaturally(tool);
+                            count++;
                         }
                     }
                 }
@@ -105,6 +92,7 @@ public class Quarrying implements Listener {
                         Block curr = origin.getRelative(x,y,0);
                         if (validQuarry(curr.getType())) {
                             curr.breakNaturally(tool);
+                            count++;
                         }
                     }
                 }
@@ -117,6 +105,7 @@ public class Quarrying implements Listener {
                         Block curr = origin.getRelative(0,y,z);
                         if (validQuarry(curr.getType())) {
                             curr.breakNaturally(tool);
+                            count++;
                         }
                     }
                 }
@@ -125,5 +114,6 @@ public class Quarrying implements Listener {
                 // Something weird has occured
             break;
         }
+        MagicList.getMagicByString("quarrying").damageItem(tool, count);
     }
 }

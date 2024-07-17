@@ -1,6 +1,6 @@
 main: com.geoderp.geoextras.Main
 name: GeoExtras
-version: 1.21.8
+version: 1.21.9
 author: GeoDerp
 api-version: 1.21
 description: All of the extra goodies for GeoPlugin

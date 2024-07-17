@@ -158,7 +158,7 @@ This enchant gives vein miner but only for ores and configurably "rare" stone ty
 - Deepslate Ore Types (Coal, Copper, Iron, Gold, Lapis, Redstone, Emerald, Diamond)
 - Nether Ores (Nether Gold, Nether Quartz, Ancient Debris)
 - Amethyst Blocks (not the ones that spawn new amethyst)
-- Raw Iron Blocks
+- Raw Iron and Copper Blocks
 
 #### Stone Types
 - Andesite
@@ -166,6 +166,7 @@ This enchant gives vein miner but only for ores and configurably "rare" stone ty
 - Granite
 - Tuff
 - Magma Blocks
+- Dripstone
 
 ### Paring
 When you break leaves with an item with this enchantment it will break all other leaves of the same type with a 5x5x5 centered on the originally broken leaf.
@@ -173,11 +174,11 @@ When you break leaves with an item with this enchantment it will break all other
 - Usable on axes and hoes
 - No conflicts with other enchantments
 
-### Quarrying (WIP)
+### Quarrying
 When you break a block with an item with the enchantment it will also break all 8 adjacent block at the same time. This functions similarly to hammers in modded minecraft.
 
 - Usable on pickaxes and shovels
-- No conflicts with other enchantments
+- Conflicts with fortune and silk touch
 
 ### Faithful (WIP)
 When you teleport while riding a mount with this enchantment the mount will teleport with you.
@@ -218,6 +219,7 @@ When you teleport while riding a mount with this enchantment the mount will tele
         - GeoMagic.magic.enchants.illumination -- Allows usage of illumination enchant
         - GeoMagic.magic.enchants.deathwoven -- Allows usage of deathwoven enchant
         - GeoMagic.magic.enchants.drain -- Allows usage of drain enchant
+        - GeoMagic.magic.enchants.prospecting -- Allows usage of prospecting enchant
         - GeoMagic.magic.enchants.quarrying -- Allows usage of quarrying enchant
         - GeoMagic.magic.enchants.paring -- Allows usage of paring enchant
         - GeoMagic.magic.enchants.faithful -- Allows usage of faithful enchant

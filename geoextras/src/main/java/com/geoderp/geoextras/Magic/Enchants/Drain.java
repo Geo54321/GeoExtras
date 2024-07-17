@@ -1,7 +1,5 @@
 package com.geoderp.geoextras.Magic.Enchants;
 
-import java.util.List;
-
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -9,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 
@@ -21,7 +18,7 @@ public class Drain implements Listener {
             Player player = (Player) event.getDamager();
             if (player.hasPermission("GeoExtras.magic.enchants.drain")) {
                 // Has permissions
-                if (isDrainItem(player.getInventory().getItemInMainHand())) {
+                if (isEnchantedItem(player.getInventory().getItemInMainHand())) {
                     // Is holding a drain item
                     if (player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() != player.getHealth()) {
                         // Less that full health
@@ -32,22 +29,8 @@ public class Drain implements Listener {
         }
     }
 
-    public boolean isDrainItem(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("drain").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("drain").isMagicItem(item);
     }
 
     public void doDrain(Player player) {

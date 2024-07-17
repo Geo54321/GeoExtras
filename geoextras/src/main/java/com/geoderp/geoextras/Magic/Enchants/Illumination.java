@@ -1,7 +1,5 @@
 package com.geoderp.geoextras.Magic.Enchants;
 
-import java.util.List;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -9,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 
@@ -19,7 +16,7 @@ public class Illumination implements Listener {
         Player player = event.getPlayer();
         if (player.hasPermission("GeoExtras.magic.enchants.illumination")) {
             // has perms
-            if (isIlluminationItem(player.getInventory().getItemInOffHand())) {
+            if (isEnchantedItem(player.getInventory().getItemInOffHand())) {
                 // offhand item is an illumination item
                 if (isDark(player)) {
                     // is in complete darkness
@@ -32,22 +29,8 @@ public class Illumination implements Listener {
         }
     }
 
-    public boolean isIlluminationItem(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("illumination").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("illumination").isMagicItem(item);
     }
 
     public boolean isDark(Player player) {

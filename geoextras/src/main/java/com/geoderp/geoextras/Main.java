@@ -67,6 +67,7 @@ public class Main extends JavaPlugin {
         // Enchantment Module
         if (getConfig().getBoolean("modules.enchantments")) {
             this.getCommand("geomagic").setExecutor(new Caster());
+            getServer().getPluginManager().registerEvents(new ConflictChecker(), this);
 
             getServer().getPluginManager().registerEvents(new Hewing(config.getInt("options.hewing-max-block-break")), this);
             getServer().getPluginManager().registerEvents(new Forge(), this);
@@ -76,20 +77,6 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Prospecting(config.getInt("options.prospecting-max-block-break"), config.getBoolean("options.prospecting-stone-type")), this);
             getServer().getPluginManager().registerEvents(new Paring(), this);
             getServer().getPluginManager().registerEvents(new Quarrying(), this);
-
-            // probably not happening
-            // Faithful -- mount tp on death
-            
-
-            // done
-            // Forge -- autosmelt
-            // Hewing -- felling
-            // Illumination -- shield auto-place torches
-            // Drain -- leech
-            // Deathwoven -- soulbound
-            // Paring -- leaf removal
-            // Prospecting -- vein mine
-            // Quarrying -- hammer
         }
 
         // WIP Module

@@ -10,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 
@@ -44,7 +43,7 @@ public class Prospecting implements Listener {
         if (player.hasPermission("GeoExtras.magic.enchants.prospecting")) {
             // Has perms
             ItemStack tool = player.getInventory().getItemInMainHand();
-            if (isProspectingItem(tool)) {
+            if (isEnchantedItem(tool)) {
                 // Using prospecting item
                 if (isProspect(event.getBlock().getType())) {
                     // Is valid ore
@@ -54,22 +53,8 @@ public class Prospecting implements Listener {
         }
     }
 
-    public boolean isProspectingItem(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("prospecting").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("prospecting").isMagicItem(item);
     }
 
     public boolean isProspect(Material origin) {
@@ -89,6 +74,7 @@ public class Prospecting implements Listener {
             for (Block ore : vein) {
                 ore.breakNaturally(tool);
             }
+            MagicList.getMagicByString("prospecting").damageItem(tool, vein.size());
         }
     }
 

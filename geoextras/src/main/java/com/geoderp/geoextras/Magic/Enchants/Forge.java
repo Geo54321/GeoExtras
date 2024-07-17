@@ -1,7 +1,6 @@
 package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.Iterator;
-import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,7 +12,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 
@@ -22,7 +20,7 @@ public class Forge implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.forge")) {
             ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
-            if (isForgeItem(tool)) {
+            if (isEnchantedItem(tool)) {
                 if (isForgableBlock(event.getBlock().getType())) {
                     event.setDropItems(false);
                     doForge(event.getBlock(), tool);
@@ -31,22 +29,8 @@ public class Forge implements Listener {
         }
     }
 
-    public boolean isForgeItem(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("forge").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("forge").isMagicItem(item);
     }
 
     public boolean isForgableBlock(Material type) {

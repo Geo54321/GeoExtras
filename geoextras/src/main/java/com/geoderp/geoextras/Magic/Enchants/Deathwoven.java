@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 import com.geoderp.geoextras.Magic.PlayerTempventory;
@@ -26,7 +25,7 @@ public class Deathwoven implements Listener {
             List<ItemStack> saveDrops = new ArrayList<ItemStack>();
 
             for (ItemStack item : normalDrops) {
-                if (isDeathwoven(item)) {
+                if (isEnchantedItem(item)) {
                     // Is deathwoven item
                     saveDrops.add(item);
                 }
@@ -54,22 +53,8 @@ public class Deathwoven implements Listener {
         }
     }
 
-    public boolean isDeathwoven(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("deathwoven").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("deathwoven").isMagicItem(item);
     }
 
     public PlayerTempventory getTempventory(Player player) {

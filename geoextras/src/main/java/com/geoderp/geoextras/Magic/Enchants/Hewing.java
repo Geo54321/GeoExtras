@@ -1,7 +1,6 @@
 package com.geoderp.geoextras.Magic.Enchants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -10,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import com.geoderp.geoextras.Magic.MagicList;
 
@@ -25,32 +23,19 @@ public class Hewing implements Listener {
     public void onPlayerInteract(BlockBreakEvent event) {
         if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.*")) {
             // Has perms
-            if (isHewingItem(event.getPlayer().getInventory().getItemInMainHand())) {
+            ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
+            if (isEnchantedItem(tool)) {
                 // Block was broken with hewing item
                 if (isTree(event.getBlock())) {
                     // Block was part of a tree
-                    doHew(event.getBlock());
+                    doHew(event.getBlock(), tool);
                 }
             }
         }
     }
 
-    public boolean isHewingItem(ItemStack item) {
-        if (item != null) {
-            if (item.hasItemMeta()) {
-                ItemMeta meta = item.getItemMeta();
-                if(meta.hasLore()) {
-                    List<String> lore = meta.getLore();
-                    for (String line : lore) {
-                        if (line.equals(MagicList.getMagicByString("hewing").getLore())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        
-        return false;
+    public boolean isEnchantedItem(ItemStack item) {
+        return MagicList.getMagicByString("hewing").isMagicItem(item);
     }
 
     public boolean isWood(Material mat) {
@@ -91,7 +76,7 @@ public class Hewing implements Listener {
         return acaciaSucks(origin.getRelative(0,height,0));
     }
 
-    public void doHew(Block origin) {
+    public void doHew(Block origin, ItemStack tool) {
         ArrayList<Block> tree = getEveryTreeBlock(origin);
 
         if (tree == null) {
@@ -101,6 +86,7 @@ public class Hewing implements Listener {
         for (Block log : tree) {
             log.breakNaturally();
         }
+        MagicList.getMagicByString("hewing").damageItem(tool, tree.size());
     }
 
     public ArrayList<Block> getEveryTreeBlock(Block origin) {
