@@ -74,7 +74,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Illumination(), this);
             getServer().getPluginManager().registerEvents(new Drain(), this);
             getServer().getPluginManager().registerEvents(new Deathwoven(), this);
-            getServer().getPluginManager().registerEvents(new Prospecting(config.getInt("options.prospecting-max-block-break"), config.getBoolean("options.prospecting-stone-type")), this);
+            getServer().getPluginManager().registerEvents(new Prospecting(config.getInt("options.prospecting-max-block-break"), config.getBoolean("options.prospecting-stone-types")), this);
             getServer().getPluginManager().registerEvents(new Paring(), this);
             getServer().getPluginManager().registerEvents(new Quarrying(), this);
         }
@@ -113,7 +113,7 @@ public class Main extends JavaPlugin {
         config.addDefault("options.elevator-range",50);
         config.addDefault("options.hewing-max-block-break", 150);
         config.addDefault("options.prospecting-max-block-break", 50);
-        config.addDefault("options.prospecting-stone-type", true);
+        config.addDefault("options.prospecting-stone-types", true);
 
         config.options().copyDefaults(true);
         saveConfig();
