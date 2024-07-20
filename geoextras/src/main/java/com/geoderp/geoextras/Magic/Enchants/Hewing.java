@@ -21,7 +21,7 @@ public class Hewing implements Listener {
 
     @EventHandler
     public void onPlayerInteract(BlockBreakEvent event) {
-        if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.*")) {
+        if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.hewing")) {
             // Has perms
             ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
             if (isEnchantedItem(tool)) {
@@ -100,7 +100,7 @@ public class Hewing implements Listener {
                     treeBlocks.add(block);
                 }
             }
-            if (treeBlocks.size() > maxBlocks) {
+            if (treeBlocks.size() > this.maxBlocks) {
                 return null;
             }
         }

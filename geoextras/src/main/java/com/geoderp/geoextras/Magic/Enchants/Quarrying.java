@@ -26,7 +26,7 @@ public class Quarrying implements Listener {
         validBlocks.add(Material.NETHERRACK);
         validBlocks.add(Material.NETHER_BRICKS);
         validBlocks.add(Material.DEEPSLATE);
-        validBlocks.add(Material.TUFF);
+        validBlocks.add(Material.COBBLED_DEEPSLATE);
         validBlocks.add(Material.DIORITE);
         validBlocks.add(Material.ANDESITE);
         validBlocks.add(Material.GRANITE);

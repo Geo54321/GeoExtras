@@ -19,9 +19,12 @@ public class Forge implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.forge")) {
+            // has perms
             ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
             if (isEnchantedItem(tool)) {
+                // is forge item
                 if (isForgableBlock(event.getBlock().getType())) {
+                    // is a valid forge target
                     event.setDropItems(false);
                     doForge(event.getBlock(), tool);
                 }
