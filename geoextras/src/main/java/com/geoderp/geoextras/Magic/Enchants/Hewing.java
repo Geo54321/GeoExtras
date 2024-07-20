@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -21,9 +22,10 @@ public class Hewing implements Listener {
 
     @EventHandler
     public void onPlayerInteract(BlockBreakEvent event) {
-        if (event.getPlayer().hasPermission("GeoExtas.magic.enchants.hewing")) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("GeoExtras.magic.enchants.hewing")) {
             // Has perms
-            ItemStack tool = event.getPlayer().getInventory().getItemInMainHand();
+            ItemStack tool = player.getInventory().getItemInMainHand();
             if (isEnchantedItem(tool)) {
                 // Block was broken with hewing item
                 if (isTree(event.getBlock())) {
