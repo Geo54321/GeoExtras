@@ -15,28 +15,45 @@ import org.bukkit.inventory.ItemStack;
 import com.geoderp.geoextras.Magic.MagicList;
 
 public class Quarrying implements Listener {
-    private List<Material> validBlocks = new ArrayList<Material>();
+    private List<Material> validPickableBlocks = new ArrayList<Material>();
+    private List<Material> validDiggableBlocks = new ArrayList<Material>();
 
     public Quarrying() {
-        validBlocks.add(Material.ANCIENT_DEBRIS);
-        validBlocks.add(Material.AMETHYST_BLOCK);
-        validBlocks.add(Material.COAL_BLOCK);
-        validBlocks.add(Material.STONE);
-        validBlocks.add(Material.COBBLESTONE);
-        validBlocks.add(Material.NETHERRACK);
-        validBlocks.add(Material.NETHER_BRICKS);
-        validBlocks.add(Material.DEEPSLATE);
-        validBlocks.add(Material.COBBLED_DEEPSLATE);
-        validBlocks.add(Material.DIORITE);
-        validBlocks.add(Material.ANDESITE);
-        validBlocks.add(Material.GRANITE);
-        validBlocks.add(Material.TUFF);
-        validBlocks.add(Material.SANDSTONE);
-        validBlocks.add(Material.RED_NETHER_BRICKS);
-        validBlocks.add(Material.BLACKSTONE);
-        validBlocks.add(Material.BASALT);
-        validBlocks.add(Material.END_STONE);
-        validBlocks.add(Material.ANCIENT_DEBRIS);
+        validPickableBlocks.add(Material.ANCIENT_DEBRIS);
+        validPickableBlocks.add(Material.AMETHYST_BLOCK);
+        validPickableBlocks.add(Material.COAL_BLOCK);
+        validPickableBlocks.add(Material.STONE);
+        validPickableBlocks.add(Material.COBBLESTONE);
+        validPickableBlocks.add(Material.NETHERRACK);
+        validPickableBlocks.add(Material.NETHER_BRICKS);
+        validPickableBlocks.add(Material.DEEPSLATE);
+        validPickableBlocks.add(Material.COBBLED_DEEPSLATE);
+        validPickableBlocks.add(Material.DIORITE);
+        validPickableBlocks.add(Material.ANDESITE);
+        validPickableBlocks.add(Material.GRANITE);
+        validPickableBlocks.add(Material.TUFF);
+        validPickableBlocks.add(Material.SANDSTONE);
+        validPickableBlocks.add(Material.RED_NETHER_BRICKS);
+        validPickableBlocks.add(Material.BLACKSTONE);
+        validPickableBlocks.add(Material.BASALT);
+        validPickableBlocks.add(Material.END_STONE);
+        validPickableBlocks.add(Material.ANCIENT_DEBRIS);
+        validPickableBlocks.add(Material.SMOOTH_BASALT);
+        validPickableBlocks.add(Material.CALCITE);
+
+        validDiggableBlocks.add(Material.DIRT);
+        validDiggableBlocks.add(Material.GRASS_BLOCK);
+        validDiggableBlocks.add(Material.SAND);
+        validDiggableBlocks.add(Material.RED_SAND);
+        validDiggableBlocks.add(Material.GRAVEL);
+        validDiggableBlocks.add(Material.COARSE_DIRT);
+        validDiggableBlocks.add(Material.MYCELIUM);
+        validDiggableBlocks.add(Material.PODZOL);
+        validDiggableBlocks.add(Material.MUD);
+        validDiggableBlocks.add(Material.SOUL_SAND);
+        validDiggableBlocks.add(Material.SOUL_SOIL);
+        validDiggableBlocks.add(Material.SNOW_BLOCK);
+        validDiggableBlocks.add(Material.CLAY);
     }
 
     @EventHandler
@@ -58,29 +75,51 @@ public class Quarrying implements Listener {
         return MagicList.getMagicByString("quarrying").isMagicItem(item);
     }
 
-    public boolean validQuarry(Material origin) {
-        if (origin.toString().contains("ORE") || origin.toString().contains("RAW") || origin.toString().contains("PRISMARINE") || origin.toString().contains("TERRACOTTA")) {
-            return true;
+    public boolean isShovel(ItemStack item) {
+        return item.getType().toString().contains("SHOVEL");
+    }
+
+    public boolean validQuarry(Material origin, ItemStack tool) {
+        if (isShovel(tool)) {
+            return this.validDiggableBlocks.contains(origin);
         }
-        if (this.validBlocks.contains(origin)) {
-            return true;
+        else {
+            if (origin.toString().contains("ORE") || origin.toString().contains("RAW") || origin.toString().contains("PRISMARINE") || origin.toString().contains("TERRACOTTA")) {
+                return true;
+            }
+            if (this.validPickableBlocks.contains(origin)) {
+                return true;
+            }
         }
         return false;
     }
 
     public void doQuarry(Block origin, BlockFace dir, ItemStack tool) {
-        int count = 0;
+        List<Block> validTargets = new ArrayList<Block>();
+        List<Block> allTargetBlocks = getTargetBlocks(origin, dir);
+        
+        for (Block block : allTargetBlocks) {
+            if (validQuarry(block.getType(), tool)) {
+                validTargets.add(block);
+            }
+        }
+        
+        for(Block block : validTargets) {
+            block.breakNaturally(tool);
+        }
+        
+        MagicList.getMagicByString("quarrying").damageItem(tool, validTargets.size());
+    }
+
+    public List<Block> getTargetBlocks(Block origin, BlockFace dir) {
+        List<Block> targets = new ArrayList<Block>();
         switch (dir) {
             case UP:
             case DOWN:
                 // No y change
                 for (int x = -1; x <= 1; x++) {
                     for (int z = -1; z <= 1; z++) {
-                        Block curr = origin.getRelative(x,0,z);
-                        if (validQuarry(curr.getType())) {
-                            curr.breakNaturally(tool);
-                            count++;
-                        }
+                        targets.add(origin.getRelative(x,0,z));
                     }
                 }
             break;
@@ -89,11 +128,7 @@ public class Quarrying implements Listener {
                 // No z change
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 1; y++) {
-                        Block curr = origin.getRelative(x,y,0);
-                        if (validQuarry(curr.getType())) {
-                            curr.breakNaturally(tool);
-                            count++;
-                        }
+                        targets.add(origin.getRelative(x,y,0));
                     }
                 }
             break;
@@ -102,11 +137,7 @@ public class Quarrying implements Listener {
                 // No x change
                 for (int y = -1; y <= 1; y++) {
                     for (int z = -1; z <= 1; z++) {
-                        Block curr = origin.getRelative(0,y,z);
-                        if (validQuarry(curr.getType())) {
-                            curr.breakNaturally(tool);
-                            count++;
-                        }
+                        targets.add(origin.getRelative(0,y,z));
                     }
                 }
             break;
@@ -114,6 +145,7 @@ public class Quarrying implements Listener {
                 // Something weird has occured
             break;
         }
-        MagicList.getMagicByString("quarrying").damageItem(tool, count);
+
+        return targets;
     }
 }

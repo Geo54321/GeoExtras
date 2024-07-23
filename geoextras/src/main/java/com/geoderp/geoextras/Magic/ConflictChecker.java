@@ -3,34 +3,65 @@ package com.geoderp.geoextras.Magic;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.geoderp.geoextras.Magic.Magic.BaseType;
+
 public class ConflictChecker implements Listener {
+    ItemStack anvilResult = null;
+
     @EventHandler
     public void onAnvil(PrepareAnvilEvent event) {
+        this.anvilResult = null;
         ItemStack left = event.getInventory().getItem(0);
         ItemStack right = event.getInventory().getItem(1);
         ItemStack result = event.getInventory().getItem(2);
 
-        if (left != null && right != null && result != null) {
-            // All anvil items exist
+        if (left != null && right != null) {
+            if (result != null || (left.getType().equals(Material.BOOK) || right.getType().equals(Material.BOOK))) {
+                // All necessary anvil items exist
+                List<Magic> allCustomEnchants = new ArrayList<Magic>();
+                
+                if (isEnchanted(left) != null) {
+                    allCustomEnchants.addAll(isEnchanted(left));
+                }
+                if (isEnchanted(right) != null) {
+                    allCustomEnchants.addAll(isEnchanted(right));
+                }
 
-            List<Magic> allCustomEnchants = new ArrayList<Magic>();
-            
-            if (isEnchanted(left) != null) {
-                allCustomEnchants.addAll(isEnchanted(left));
+                allCustomEnchants = hasValidBase(allCustomEnchants, result, left);
+                allCustomEnchants = removeDuplicates(allCustomEnchants);
+
+                if (allCustomEnchants.size() > 0) {
+                    // At least one custom enchant
+                    this.anvilResult = alterResult(allCustomEnchants, result, left);
+                    event.setResult(this.anvilResult);
+
+                }
             }
-            if (isEnchanted(right) != null) {
-                allCustomEnchants.addAll(isEnchanted(right));
-            }
-            if (allCustomEnchants.size() > 0) {
-                // At least one custom enchant
-                event.setResult(alterResult(allCustomEnchants, result));
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if (event.getClickedInventory() != null) {
+            if (event.getClickedInventory().getType().equals(InventoryType.ANVIL) && event.getSlotType().equals(SlotType.RESULT) && this.anvilResult != null) {
+                event.setCursor(this.anvilResult);
+    
+                event.getClickedInventory().setItem(0, null);
+                event.getClickedInventory().setItem(1, null);
+                event.getClickedInventory().setItem(2, null);
+                this.anvilResult = null;
             }
         }
     }
@@ -39,7 +70,7 @@ public class ConflictChecker implements Listener {
         List<Magic> enchants = new ArrayList<Magic>();
 
         for (Magic magic : MagicList.magic) {
-            if (magic.isMagicItem(item)) {
+            if (magic.isEnchantedItem(item)) {
                 enchants.add(magic);
             }
         }
@@ -50,7 +81,43 @@ public class ConflictChecker implements Listener {
             return enchants;
     }
 
-    public ItemStack alterResult(List<Magic> custom, ItemStack result) {
+    public List<Magic> hasValidBase(List<Magic> custom, ItemStack result, ItemStack left) {
+        ItemStack out = result;
+        if (out == null) {
+            out = left;
+        }
+
+        List<Magic> stillValid = new ArrayList<Magic>();
+        for(Magic magic : custom) {
+            for(BaseType base : magic.getBaseTypes()) {
+                if (magic.isValidType(base).contains(out.getType())) {
+                    stillValid.add(magic);
+                    break;
+                }
+            }
+        }
+
+        return stillValid;
+    }
+
+    public List<Magic> removeDuplicates(List<Magic> custom) {
+        List<Magic> unique = new ArrayList<Magic>();
+        for (Magic magic : custom) {
+            if (!unique.contains(magic)) {
+                unique.add(magic);
+            }
+        }
+
+        return unique;
+    }
+
+    public ItemStack alterResult(List<Magic> custom, ItemStack result, ItemStack left) {
+        ItemStack out = result;
+        if (out == null) {
+            out = new ItemStack(left.getType(), left.getAmount());
+            out.setItemMeta(left.getItemMeta());
+        }
+
         // Custom enchant collisions
         if (custom.size() > 1) {
             if (custom.contains(MagicList.getMagicByString("prospecting")) && custom.contains(MagicList.getMagicByString("quarrying"))) {
@@ -65,7 +132,7 @@ public class ConflictChecker implements Listener {
                 // custom enchant has conflicts
                 Enchantment[] conflicts = magic.getConflicts();
                 for (Enchantment enchant : conflicts) {
-                    if (result.getEnchantments().containsKey(enchant)) {
+                    if (out.getEnchantments().containsKey(enchant)) {
                         // Enchant does not conflict 
                         notValid.add(magic);
                     }
@@ -81,9 +148,9 @@ public class ConflictChecker implements Listener {
         }
 
         // Create result
-        ItemMeta meta = result.getItemMeta();
+        ItemMeta meta = out.getItemMeta();
         meta.setLore(lore);
-        result.setItemMeta(meta);
-        return result;
+        out.setItemMeta(meta);
+        return out;
     }
 }

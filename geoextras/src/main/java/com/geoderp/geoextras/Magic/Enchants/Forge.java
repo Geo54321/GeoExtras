@@ -20,7 +20,7 @@ public class Forge implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("GeoExtas.magic.enchants.forge")) {
+        if (player.hasPermission("GeoExtras.magic.enchants.forge")) {
             // has perms
             ItemStack tool = player.getInventory().getItemInMainHand();
             if (isEnchantedItem(tool)) {

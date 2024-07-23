@@ -27,7 +27,8 @@ public class Magic {
         pants,
         shield,
         horse,
-        bow
+        bow,
+        book
     }
 
     public Magic(String name) {
@@ -68,7 +69,7 @@ public class Magic {
     }
 
     public ItemStack getMagicedItem() {
-        ItemStack item = new ItemStack(getItemType(this.baseTypes[0]));
+        ItemStack item = new ItemStack(Material.BOOK);
         item.setAmount(1);
         ItemMeta meta = item.getItemMeta();
         meta.setLore(this.lore);
@@ -77,36 +78,26 @@ public class Magic {
         return item;
     }
 
-    private Material getItemType(BaseType base) {
-        switch (base) {
-            case pick:
-                return Material.DIAMOND_PICKAXE;
-            case axe:
-                return Material.DIAMOND_AXE;
-            case shovel:
-                return Material.DIAMOND_SHOVEL;
-            case sword:
-                return Material.DIAMOND_SWORD;
-            case hoe:
-                return Material.DIAMOND_HOE;
-            case helmet:
-                return Material.DIAMOND_HELMET;
-            case boots:
-                return Material.DIAMOND_BOOTS;
-            case chest:
-                return Material.DIAMOND_CHESTPLATE;
-            case pants:
-                return Material.DIAMOND_LEGGINGS;
-            case shield:
-                return Material.SHIELD;
-            case horse:
-                return Material.DIAMOND_HORSE_ARMOR;
-            default:
-                return null;
+    public boolean isMagicItem(ItemStack item) {
+        if (item != null) {
+            if (!item.getType().equals(Material.BOOK)) {
+                if (item.hasItemMeta()) {
+                    ItemMeta meta = item.getItemMeta();
+                    if(meta.hasLore()) {
+                        List<String> lore = meta.getLore();
+                        for (String line : lore) {
+                            if (line.equals(this.lore.get(0))) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
         }
+        return false;
     }
 
-    public boolean isMagicItem(ItemStack item) {
+    public boolean isEnchantedItem(ItemStack item) {
         if (item != null) {
             if (item.hasItemMeta()) {
                 ItemMeta meta = item.getItemMeta();
@@ -140,5 +131,78 @@ public class Magic {
         Damageable dmg = (Damageable) item.getItemMeta();
         dmg.setDamage(dmg.getDamage() + amount);
         item.setItemMeta(dmg);
+    }
+
+    public List<Material> isValidType(BaseType base) {
+        List<Material> validMats = new ArrayList<Material>();
+        switch (base) {
+            case pick:
+                validMats.add(Material.NETHERITE_PICKAXE);
+                validMats.add(Material.DIAMOND_PICKAXE);
+                validMats.add(Material.IRON_PICKAXE);
+                break;
+            case axe:
+                validMats.add(Material.NETHERITE_AXE);
+                validMats.add(Material.DIAMOND_AXE);
+                validMats.add(Material.IRON_AXE);
+                break;
+            case shovel:
+                validMats.add(Material.NETHERITE_SHOVEL);
+                validMats.add(Material.DIAMOND_SHOVEL);
+                validMats.add(Material.IRON_SHOVEL);
+                break;
+            case sword:
+                validMats.add(Material.NETHERITE_SWORD);
+                validMats.add(Material.DIAMOND_SWORD);
+                validMats.add(Material.IRON_SWORD);
+                validMats.add(Material.MACE);
+                validMats.add(Material.TRIDENT);
+                break;
+            case hoe:
+                validMats.add(Material.NETHERITE_HOE);
+                validMats.add(Material.DIAMOND_HOE);
+                validMats.add(Material.IRON_HOE);
+                break;
+            case helmet:
+                validMats.add(Material.NETHERITE_HELMET);
+                validMats.add(Material.DIAMOND_HELMET);
+                validMats.add(Material.IRON_HELMET);
+                break;
+            case boots:
+                validMats.add(Material.NETHERITE_BOOTS);
+                validMats.add(Material.DIAMOND_BOOTS);
+                validMats.add(Material.IRON_BOOTS);
+                break;
+            case chest:
+                validMats.add(Material.NETHERITE_CHESTPLATE);
+                validMats.add(Material.DIAMOND_CHESTPLATE);
+                validMats.add(Material.IRON_CHESTPLATE);
+                break;
+            case pants:
+                validMats.add(Material.NETHERITE_LEGGINGS);
+                validMats.add(Material.DIAMOND_LEGGINGS);
+                validMats.add(Material.IRON_LEGGINGS);
+                break;
+            case shield:
+                validMats.add(Material.SHIELD);
+                break;
+            case horse:
+                validMats.add(Material.LEATHER_HORSE_ARMOR);
+                validMats.add(Material.IRON_HORSE_ARMOR);
+                validMats.add(Material.GOLDEN_HORSE_ARMOR);
+                validMats.add(Material.DIAMOND_HORSE_ARMOR);
+                break;
+            case bow:
+                validMats.add(Material.BOW);
+                validMats.add(Material.CROSSBOW);
+                break;
+            case book:
+                validMats.add(Material.BOOK);
+                break;
+            default:
+                break;
+        }
+
+        return validMats;
     }
 }

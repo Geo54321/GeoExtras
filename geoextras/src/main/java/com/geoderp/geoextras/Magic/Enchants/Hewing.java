@@ -48,12 +48,12 @@ public class Hewing implements Listener {
         return mat.toString().contains("LEAVES") || mat.toString().contains("WART");
     }
 
-    public boolean acaciaSucks(Block lastLog) {
+    public boolean isWeirdTree(Block lastLog) {
         // acacia trees can spawn with no leaves above the trunk, this checks for that
-        for (int y = 0; y < 4; y++) {
+        for (int y = 0; y < 8; y++) {
             for (int x = -1; x < 2; x++) {
                 for (int z = -1; z < 2; z++) {
-                    if (lastLog.getRelative(x,y,z).getType().equals(Material.ACACIA_LEAVES)) {
+                    if (lastLog.getRelative(x,y,z).getType().equals(Material.ACACIA_LEAVES) || lastLog.getRelative(x,y,z).getType().equals(Material.CHERRY_LEAVES)) {
                         return true;
                     }
                 }
@@ -65,17 +65,19 @@ public class Hewing implements Listener {
     public boolean isTree(Block origin) {
         Material original = origin.getType();
         int height = 0;
-        while (origin.getRelative(0,height,0).getType().equals(original)) {
-            height++;
-            if (height > maxBlocks) {
-                return false;
-            }
-            if (isLeaf(origin.getRelative(0,height,0).getType())) {
-                return true;
+        if (isWood(original)) {
+            while (origin.getRelative(0,height,0).getType().equals(original)) {
+                height++;
+                if (height > maxBlocks) {
+                    return false;
+                }
+                if (isLeaf(origin.getRelative(0,height,0).getType())) {
+                    return true;
+                }
             }
         }
-
-        return acaciaSucks(origin.getRelative(0,height,0));
+        
+        return isWeirdTree(origin.getRelative(0,height,0));
     }
 
     public void doHew(Block origin, ItemStack tool) {

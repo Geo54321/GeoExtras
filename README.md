@@ -180,13 +180,6 @@ When you break a block with an item with the enchantment it will also break all 
 - Usable on pickaxes and shovels
 - Conflicts with fortune and silk touch
 
-### Faithful (WIP)
-When you teleport while riding a mount with this enchantment the mount will teleport with you.
-
-- Usable on horse armor
-- No conflicts with other enchantments
-
-
 # All Permission Nodes as a Tree
 - GeoExtras.*
     - GeoExtras.artifacts.*
@@ -222,7 +215,6 @@ When you teleport while riding a mount with this enchantment the mount will tele
         - GeoMagic.magic.enchants.prospecting -- Allows usage of prospecting enchant
         - GeoMagic.magic.enchants.quarrying -- Allows usage of quarrying enchant
         - GeoMagic.magic.enchants.paring -- Allows usage of paring enchant
-        - GeoMagic.magic.enchants.faithful -- Allows usage of faithful enchant
     - GeoExtras.magic.*
         - GeoExtras.magic.enchants.*
         - GeoExtras.magic.command

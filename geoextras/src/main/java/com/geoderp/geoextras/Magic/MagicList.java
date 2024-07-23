@@ -52,7 +52,7 @@ public class MagicList {
     private Magic createHewing() {
         Magic hewing = new Magic("hewing");
         hewing.setLore("§2Hewing");
-        hewing.setBaseTypes(new BaseType[]{BaseType.axe});
+        hewing.setBaseTypes(new BaseType[]{BaseType.axe, BaseType.book});
         hewing.setConflicts(null);
 
         return hewing;
@@ -61,7 +61,7 @@ public class MagicList {
     private Magic createForge() {
         Magic forge = new Magic("forge");
         forge.setLore("§6Forge");
-        forge.setBaseTypes(new BaseType[]{BaseType.pick});
+        forge.setBaseTypes(new BaseType[]{BaseType.pick, BaseType.book});
         Enchantment[] conflicts = {Enchantment.FORTUNE, Enchantment.SILK_TOUCH};
         forge.setConflicts(conflicts);
 
@@ -71,7 +71,7 @@ public class MagicList {
     private Magic createIllumination() {
         Magic illumination = new Magic("illumination");
         illumination.setLore("§fIllumination");
-        illumination.setBaseTypes(new BaseType[]{BaseType.shield});
+        illumination.setBaseTypes(new BaseType[]{BaseType.shield, BaseType.book});
         illumination.setConflicts(null);
 
         return illumination;
@@ -80,7 +80,7 @@ public class MagicList {
     private Magic createDrain() {
         Magic drain = new Magic("drain");
         drain.setLore("§4Drain");
-        drain.setBaseTypes(new BaseType[]{BaseType.sword, BaseType.axe});
+        drain.setBaseTypes(new BaseType[]{BaseType.sword, BaseType.axe, BaseType.book});
         drain.setConflicts(null);
 
         return drain;
@@ -98,7 +98,7 @@ public class MagicList {
     private Magic createProspecting() {
         Magic prospecting = new Magic("prospecting");
         prospecting.setLore("§eProspecting");
-        prospecting.setBaseTypes(new BaseType[]{BaseType.pick});
+        prospecting.setBaseTypes(new BaseType[]{BaseType.pick, BaseType.book});
         prospecting.setConflicts(null);
 
         return prospecting;
@@ -107,7 +107,7 @@ public class MagicList {
     private Magic createParing() {
         Magic paring = new Magic("paring");
         paring.setLore("§aParing");
-        paring.setBaseTypes(new BaseType[]{BaseType.axe});
+        paring.setBaseTypes(new BaseType[]{BaseType.axe, BaseType.book});
         paring.setConflicts(null);
 
         return paring;
@@ -116,12 +116,10 @@ public class MagicList {
     private Magic createQuarry() {
         Magic quarrying = new Magic("quarrying");
         quarrying.setLore("§7Quarrying");
-        quarrying.setBaseTypes(new BaseType[]{BaseType.pick});
+        quarrying.setBaseTypes(new BaseType[]{BaseType.pick, BaseType.shovel, BaseType.book});
         Enchantment[] conflicts = {Enchantment.FORTUNE, Enchantment.SILK_TOUCH};
         quarrying.setConflicts(conflicts);
 
         return quarrying;
     }
-
-    
 }

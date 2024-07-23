@@ -27,6 +27,8 @@ public class Prospecting implements Listener {
             validOres.add(Material.TUFF);
             validOres.add(Material.MAGMA_BLOCK);
             validOres.add(Material.DRIPSTONE_BLOCK);
+            validOres.add(Material.SMOOTH_BASALT);
+            validOres.add(Material.CALCITE);
         }
 
         // Add base ore types here
