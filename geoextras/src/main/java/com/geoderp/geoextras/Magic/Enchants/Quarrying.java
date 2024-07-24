@@ -112,6 +112,7 @@ public class Quarrying implements Listener {
             for (Block block : validTargets) {
                 if (Forge.isForgableBlock(block.getType())) {
                     Forge.doForge(block, tool);
+                    block.setType(Material.AIR);
                 }
                 else {
                     block.breakNaturally(tool);

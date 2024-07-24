@@ -81,6 +81,7 @@ public class Prospecting implements Listener {
                 for (Block ore : vein) {
                     if (Forge.isForgableBlock(ore.getType())) {
                         Forge.doForge(ore, tool);
+                        ore.setType(Material.AIR);
                     }
                     else {
                         ore.breakNaturally(tool);
