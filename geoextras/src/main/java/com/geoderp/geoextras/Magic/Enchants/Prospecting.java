@@ -59,6 +59,10 @@ public class Prospecting implements Listener {
         return MagicList.getMagicByString("prospecting").isMagicItem(item);
     }
 
+    public boolean isForgeItem(ItemStack item) {
+        return MagicList.getMagicByString("forge").isMagicItem(item);
+    }
+
     public boolean isProspect(Material origin) {
         if (origin.toString().contains("ORE")) {
             return true;
@@ -73,9 +77,22 @@ public class Prospecting implements Listener {
         List<Block> vein = getEveryOreBlock(origin);
 
         if (vein != null) {
-            for (Block ore : vein) {
-                ore.breakNaturally(tool);
+            if (isForgeItem(tool)) {
+                for (Block ore : vein) {
+                    if (Forge.isForgableBlock(ore.getType())) {
+                        Forge.doForge(ore, tool);
+                    }
+                    else {
+                        ore.breakNaturally(tool);
+                    }
+                }
             }
+            else {
+                for (Block ore : vein) {
+                    ore.breakNaturally(tool);
+                }
+            }
+
             MagicList.getMagicByString("prospecting").damageItem(tool, vein.size());
         }
     }

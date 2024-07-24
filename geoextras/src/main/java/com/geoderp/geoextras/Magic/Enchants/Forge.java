@@ -38,7 +38,7 @@ public class Forge implements Listener {
         return MagicList.getMagicByString("forge").isMagicItem(item);
     }
 
-    public boolean isForgableBlock(Material type) {
+    public static boolean isForgableBlock(Material type) {
         if (type.equals(Material.COPPER_ORE)
             || type.equals(Material.DEEPSLATE_COPPER_ORE)
             || type.equals(Material.IRON_ORE)
@@ -52,7 +52,7 @@ public class Forge implements Listener {
         return false;
     }
 
-    public void doForge(Block block, ItemStack tool) {
+    public static void doForge(Block block, ItemStack tool) {
         if (block.getType().equals(Material.NETHER_GOLD_ORE)) {
             ItemStack drop = new ItemStack(Material.GOLD_INGOT, 1);
             block.getWorld().dropItemNaturally(block.getLocation(), drop);

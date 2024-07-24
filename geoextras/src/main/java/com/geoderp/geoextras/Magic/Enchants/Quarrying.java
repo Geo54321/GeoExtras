@@ -75,6 +75,10 @@ public class Quarrying implements Listener {
         return MagicList.getMagicByString("quarrying").isMagicItem(item);
     }
 
+    public boolean isForgeItem(ItemStack item) {
+        return MagicList.getMagicByString("forge").isMagicItem(item);
+    }
+
     public boolean isShovel(ItemStack item) {
         return item.getType().toString().contains("SHOVEL");
     }
@@ -104,8 +108,20 @@ public class Quarrying implements Listener {
             }
         }
         
-        for(Block block : validTargets) {
-            block.breakNaturally(tool);
+        if (isForgeItem(tool)) {
+            for (Block block : validTargets) {
+                if (Forge.isForgableBlock(block.getType())) {
+                    Forge.doForge(block, tool);
+                }
+                else {
+                    block.breakNaturally(tool);
+                }
+            }
+        }
+        else {
+            for (Block block : validTargets) {
+                block.breakNaturally(tool);
+            }
         }
         
         MagicList.getMagicByString("quarrying").damageItem(tool, validTargets.size());
