@@ -41,7 +41,7 @@ public class Hewing implements Listener {
     }
 
     public boolean isWood(Material mat) {
-        return mat.toString().contains("LOG") || mat.toString().contains("STEM");
+        return mat.toString().contains("LOG") || mat.toString().contains("STEM") || mat.toString().contains("ROOTS");
     }
 
     public boolean isLeaf(Material mat) {
@@ -51,9 +51,9 @@ public class Hewing implements Listener {
     public boolean isWeirdTree(Block lastLog) {
         // acacia trees can spawn with no leaves above the trunk, this checks for that
         for (int y = 0; y < 8; y++) {
-            for (int x = -1; x < 2; x++) {
-                for (int z = -1; z < 2; z++) {
-                    if (lastLog.getRelative(x,y,z).getType().equals(Material.ACACIA_LEAVES) || lastLog.getRelative(x,y,z).getType().equals(Material.CHERRY_LEAVES)) {
+            for (int x = -2; x < 3; x++) {
+                for (int z = -2; z < 3; z++) {
+                    if (lastLog.getRelative(x,y,z).getType().toString().contains("LEAVES")) {
                         return true;
                     }
                 }

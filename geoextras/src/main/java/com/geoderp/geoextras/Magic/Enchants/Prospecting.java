@@ -49,6 +49,7 @@ public class Prospecting implements Listener {
                 // Using prospecting item
                 if (isProspect(event.getBlock().getType())) {
                     // Is valid ore
+                    event.setDropItems(false);
                     doProspect(event.getBlock(), tool);
                 }
             }

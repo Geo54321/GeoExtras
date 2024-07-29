@@ -64,6 +64,7 @@ public class Quarrying implements Listener {
             ItemStack tool = player.getInventory().getItemInMainHand();
             if (isEnchantedItem(tool)) {
                 // Using quarrying item
+                event.setDropItems(false);
                 List<Block> lastBlocks = player.getLastTwoTargetBlocks(null, 5);
                 BlockFace face = lastBlocks.get(1).getFace(lastBlocks.get(0));
                 doQuarry(event.getBlock(), face, tool);

@@ -25,10 +25,13 @@ public class Forge implements Listener {
             ItemStack tool = player.getInventory().getItemInMainHand();
             if (isEnchantedItem(tool)) {
                 // is forge item
-                if (isForgableBlock(event.getBlock().getType())) {
-                    // is a valid forge target
-                    event.setDropItems(false);
-                    doForge(event.getBlock(), tool);
+                if (!isQuarryingOrProspecting(tool)) {
+                    // is not double working with another enchant
+                    if (isForgableBlock(event.getBlock().getType())) {
+                        // is a valid forge target
+                        event.setDropItems(false);
+                        doForge(event.getBlock(), tool);
+                    }
                 }
             }
         }
@@ -36,6 +39,10 @@ public class Forge implements Listener {
 
     public boolean isEnchantedItem(ItemStack item) {
         return MagicList.getMagicByString("forge").isMagicItem(item);
+    }
+
+    public boolean isQuarryingOrProspecting(ItemStack item) {
+        return MagicList.getMagicByString("prospecting").isMagicItem(item) || MagicList.getMagicByString("quarrying").isMagicItem(item);
     }
 
     public static boolean isForgableBlock(Material type) {
