@@ -11,6 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.inventory.InventoryType.SlotType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -54,13 +55,30 @@ public class ConflictChecker implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getClickedInventory() != null) {
-            if (event.getClickedInventory().getType().equals(InventoryType.ANVIL) && event.getSlotType().equals(SlotType.RESULT) && this.anvilResult != null) {
+        Inventory inv = event.getClickedInventory();
+        if (inv != null) {
+            if (inv.getType().equals(InventoryType.ANVIL) && event.getSlotType().equals(SlotType.RESULT) && this.anvilResult != null) {
                 event.setCursor(this.anvilResult);
-    
-                event.getClickedInventory().setItem(0, null);
-                event.getClickedInventory().setItem(1, null);
-                event.getClickedInventory().setItem(2, null);
+                
+                ItemStack temp = inv.getItem(0);
+                if (temp.getAmount() > 1) {
+                    temp.setAmount(temp.getAmount()-1);
+                    inv.setItem(0,temp);
+                }
+                else {
+                    inv.setItem(0, null);
+                }
+
+                temp = inv.getItem(1);
+                if (temp.getAmount() > 1) {
+                    temp.setAmount(temp.getAmount()-1);
+                    inv.setItem(1,temp);
+                }
+                else {
+                    inv.setItem(1, null);
+                }
+                
+                inv.setItem(2, null);
                 this.anvilResult = null;
             }
         }
