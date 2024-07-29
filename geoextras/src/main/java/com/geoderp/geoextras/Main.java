@@ -56,6 +56,7 @@ public class Main extends JavaPlugin {
         // Misc Module
         if (getConfig().getBoolean("modules.misc")) {
             getServer().getPluginManager().registerEvents(new LapisElevators(config.getInt("options.elevator-range")), this);
+            getServer().getPluginManager().registerEvents(new SilkSpawners(), this);
         }
 
         // Silly Module

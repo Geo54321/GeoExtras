@@ -90,6 +90,12 @@ permissions:
   GeoExtras.misc.elevators:
     description: Allows use of Lapis Elevators
     default: op
+  GeoExtras.misc.silk.silk:
+    description: Allows use of silk spawners with silk touch
+    default: op
+  GeoExtras.misc.silk.nosilk:
+    description: Allows use of silk spawners without silk touch
+    default: op
   GeoExtras.artifacts.staff:
     description: Allows access to the staff version of geoartifact
     default: op
@@ -165,6 +171,8 @@ permissions:
     default: op
     children:
       GeoExtras.misc.elevators: true
+      GeoExtras.misc.silk.silk: true
+      GeoExtras.misc.silk.nosilk: true
   GeoExtras.silly.*:
     description: Allows usage of the silly bits of the plugin
     default: op

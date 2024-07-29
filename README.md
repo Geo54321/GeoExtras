@@ -77,6 +77,9 @@ Contains misc features that don't fit into other categories
 ### Lapis Elevators
 Allows the use to make "elevators" that teleport the user between vertical lapis blocks as long as there is an space above the elevator for them.
 
+### Silk Spawners
+Allows the dropping of monster spawners with or without silk touch, sperate permissions for each.
+
 **Permission Node: GeoExtras.misc.elevators**
 
 ## Chat Module
@@ -196,7 +199,9 @@ When you break a block with an item with the enchantment it will also break all 
         - GeoExtras.commands.poggers -- Allows usage of /poggers
         - GeoExtras.commands.poggers.others -- Allows usage of /poggers on others
     - GeoExtras.misc.*
-        - GeoExtras.misc.elevators -- Allows Usage of elevators
+        - GeoExtras.misc.elevators -- Allows usage of elevators
+        - GeoExtras.misc.silk.silk -- Allows usage of silk spawners with silk touch
+        - GeoExtras.misc.silk.silk -- Allows usage of silk spawners without silk touch
     - GeoExtras.farm.*
         - GeoExtras.farm.harvest -- Allows usage of right click harvest
         - GeoExtras.farm.frow -- Allows usage of the extra bonemeal growth

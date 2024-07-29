@@ -75,9 +75,11 @@ public class Hewing implements Listener {
                     return true;
                 }
             }
+            
+            return isWeirdTree(origin.getRelative(0,height,0));
         }
         
-        return isWeirdTree(origin.getRelative(0,height,0));
+        return false;
     }
 
     public void doHew(Block origin, ItemStack tool) {
