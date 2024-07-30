@@ -147,7 +147,7 @@ When you die with an item with the Death Woven enchantment in your inventory it 
 ### Drain
 When you hit an enemy with an item with this enchantment it will heal 1 heart of damage.
 
-- Usable on swords
+- Usable on swords, maces, tridents, and axes
 - No conflicts with other enchantments
 
 ### Prospecting
