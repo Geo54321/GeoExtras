@@ -171,17 +171,55 @@ This enchant gives vein miner but only for ores and configurably "rare" stone ty
 - Magma Blocks
 - Dripstone
 
-### Paring
-When you break leaves with an item with this enchantment it will break all other leaves of the same type with a 5x5x5 centered on the originally broken leaf.
-
-- Usable on axes and hoes
-- No conflicts with other enchantments
-
 ### Quarrying
 When you break a block with an item with the enchantment it will also break all 8 adjacent block at the same time. This functions similarly to hammers in modded minecraft.
 
 - Usable on pickaxes and shovels
 - Conflicts with fortune and silk touch
+
+#### Pickaxe Types
+- Ancient Debris
+- Amethyst Blocks (not the budding crystal ones)
+- Coal Blocks
+- Stone
+- Cobblestone
+- Netherrack
+- Nether Bricks
+- Deepslate
+- Cobbled Deepslate
+- Diorite
+- Andesite
+- Granite
+- Tuff
+- Sandstone
+- Red Nether Bricks
+- Blackstone
+- Basalt
+- End_Stone
+- Smooth Basalt
+- Calcite
+- Dripstone
+- Any Ores
+- Any Raw Ore Blocks
+- Any Prismarine Variants
+- Any Terracotta
+- Any Conrete 
+
+#### Shovel Types
+- Dirt
+- Grass
+- Sand
+- Red Sand
+- Gravel
+- Coarse Dirt
+- Mycelium
+- Podzol
+- Mud
+- Soul Sand
+- Soul Soil
+- Snow Block
+- Clay
+- Any Concrete Powder
 
 # All Permission Nodes as a Tree
 - GeoExtras.*
@@ -219,7 +257,6 @@ When you break a block with an item with the enchantment it will also break all 
         - GeoMagic.magic.enchants.drain -- Allows usage of drain enchant
         - GeoMagic.magic.enchants.prospecting -- Allows usage of prospecting enchant
         - GeoMagic.magic.enchants.quarrying -- Allows usage of quarrying enchant
-        - GeoMagic.magic.enchants.paring -- Allows usage of paring enchant
     - GeoExtras.magic.*
         - GeoExtras.magic.enchants.*
         - GeoExtras.magic.command

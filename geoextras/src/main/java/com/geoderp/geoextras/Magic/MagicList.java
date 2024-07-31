@@ -17,7 +17,6 @@ public class MagicList {
         magic.add(createDrain());
         magic.add(createDeathWoven());
         magic.add(createProspecting());
-        magic.add(createParing());
         magic.add(createQuarry());
 
         magicStrings = getNames();
@@ -102,15 +101,6 @@ public class MagicList {
         prospecting.setConflicts(null);
 
         return prospecting;
-    }
-
-    private Magic createParing() {
-        Magic paring = new Magic("paring");
-        paring.setLore("§aParing");
-        paring.setBaseTypes(new BaseType[]{BaseType.axe, BaseType.book});
-        paring.setConflicts(null);
-
-        return paring;
     }
 
     private Magic createQuarry() {

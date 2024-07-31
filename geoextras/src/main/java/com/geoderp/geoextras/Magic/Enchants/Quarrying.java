@@ -37,7 +37,7 @@ public class Quarrying implements Listener {
         validPickableBlocks.add(Material.BLACKSTONE);
         validPickableBlocks.add(Material.BASALT);
         validPickableBlocks.add(Material.END_STONE);
-        validPickableBlocks.add(Material.ANCIENT_DEBRIS);
+        validPickableBlocks.add(Material.DRIPSTONE_BLOCK);
         validPickableBlocks.add(Material.SMOOTH_BASALT);
         validPickableBlocks.add(Material.CALCITE);
 
@@ -86,10 +86,16 @@ public class Quarrying implements Listener {
 
     public boolean validQuarry(Material origin, ItemStack tool) {
         if (isShovel(tool)) {
-            return this.validDiggableBlocks.contains(origin);
+            if (origin.toString().contains("CONCRETE_POWDER")) {
+                return true;
+            }
+            if (this.validDiggableBlocks.contains(origin)) {
+                return true;
+            }
+            
         }
         else {
-            if (origin.toString().contains("ORE") || origin.toString().contains("RAW") || origin.toString().contains("PRISMARINE") || origin.toString().contains("TERRACOTTA")) {
+            if (origin.toString().contains("ORE") || origin.toString().contains("RAW") || origin.toString().contains("PRISMARINE") || origin.toString().contains("TERRACOTTA") || origin.toString().contains("CONCRETE")) {
                 return true;
             }
             if (this.validPickableBlocks.contains(origin)) {

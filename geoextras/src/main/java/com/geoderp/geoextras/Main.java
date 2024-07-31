@@ -76,7 +76,6 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Drain(), this);
             getServer().getPluginManager().registerEvents(new Deathwoven(), this);
             getServer().getPluginManager().registerEvents(new Prospecting(config.getInt("options.prospecting-max-block-break"), config.getBoolean("options.prospecting-stone-types")), this);
-            getServer().getPluginManager().registerEvents(new Paring(), this);
             getServer().getPluginManager().registerEvents(new Quarrying(), this);
         }
 
