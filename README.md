@@ -1,5 +1,5 @@
 
-# Current Supported Minecraft Version: 1.21
+# Current Supported Minecraft Version: 1.21.6
 
 ## GeoExtras
 This is a Minecraft Spigot plugin that adds features we use on the MCNSA community server. It can be used alongside my other plugin or standalone.
