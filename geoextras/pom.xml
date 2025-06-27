@@ -34,7 +34,7 @@
   </dependencies>
 
   <build>
-    <directory>/home/ryan/Software/Java/GeoExtras/src/main/resources</directory>
+    <directory>${project.basedir}/target/src/main/resources</directory>
     <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
     <resources>
       <resource>
