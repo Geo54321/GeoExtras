@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ExtraGrow implements Listener {
     double growthChance;
-    Material[] validMaterials = {Material.LILY_PAD, Material.OXEYE_DAISY, Material.CORNFLOWER, Material.BLUE_ORCHID, Material.AZURE_BLUET, Material.WHITE_TULIP, Material.ALLIUM, Material.LILAC, Material.ORANGE_TULIP, Material.PINK_TULIP, Material.POPPY, Material.RED_TULIP, Material.LILY_OF_THE_VALLEY, Material.DANDELION};
+    Material[] validMaterials = {Material.LILY_PAD, Material.OXEYE_DAISY, Material.CORNFLOWER, Material.BLUE_ORCHID, Material.AZURE_BLUET, Material.WHITE_TULIP, Material.ALLIUM, Material.LILAC, Material.ORANGE_TULIP, Material.PINK_TULIP, Material.POPPY, Material.RED_TULIP, Material.LILY_OF_THE_VALLEY, Material.DANDELION, Material.OPEN_EYEBLOSSOM, Material.CLOSED_EYEBLOSSOM, Material.SPORE_BLOSSOM};
 
     public ExtraGrow(double growthChance) {
         this.growthChance = growthChance;

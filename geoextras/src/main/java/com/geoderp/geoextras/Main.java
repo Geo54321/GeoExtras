@@ -29,6 +29,7 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
 
         MagicList ml = new MagicList();
+        ml.castMagic();
 
         // Farm Module
         if (getConfig().getBoolean("modules.farm")) {

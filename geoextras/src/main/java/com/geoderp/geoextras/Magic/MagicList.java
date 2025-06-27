@@ -10,7 +10,7 @@ public class MagicList {
     public static ArrayList<Magic> magic = new ArrayList<Magic>();
     public static ArrayList<String> magicStrings;
 
-    public MagicList() {
+    public void castMagic() {
         magic.add(createHewing());
         magic.add(createForge());
         magic.add(createIllumination());

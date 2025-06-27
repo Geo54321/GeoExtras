@@ -20,7 +20,7 @@ public class Drain implements Listener {
                 // Has permissions
                 if (isEnchantedItem(player.getInventory().getItemInMainHand())) {
                     // Is holding a drain item
-                    if (player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() != player.getHealth()) {
+                    if (player.getAttribute(Attribute.MAX_HEALTH).getValue() != player.getHealth()) {
                         // Less that full health
                         doDrain(player);
                     }
@@ -34,9 +34,9 @@ public class Drain implements Listener {
     }
 
     public void doDrain(Player player) {
-        if (player.getHealth() >= player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - 1) {
+        if (player.getHealth() >= player.getAttribute(Attribute.MAX_HEALTH).getValue() - 1) {
             // Near max health - set max health
-            player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+            player.setHealth(player.getAttribute(Attribute.MAX_HEALTH).getValue());
         }
         else {
             // Not near max health - increment
