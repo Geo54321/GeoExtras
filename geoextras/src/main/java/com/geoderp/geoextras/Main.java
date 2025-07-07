@@ -86,6 +86,11 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new JankStep(), this);
         }
 
+        // Disconnect Messages Missing Workaround
+        if (getConfig().getBoolean("options.disconnect-workaround")) {
+            getServer().getPluginManager().registerEvents(new DisconnectMessage(), this);
+        }
+
         this.getCommand("geoextras").setExecutor(new GeoExtras(this));
     }
     
@@ -115,6 +120,7 @@ public class Main extends JavaPlugin {
         config.addDefault("options.hewing-max-block-break", 150);
         config.addDefault("options.prospecting-max-block-break", 50);
         config.addDefault("options.prospecting-stone-types", true);
+        config.addDefault("options.disconnect-workaround", false);
 
         config.options().copyDefaults(true);
         saveConfig();

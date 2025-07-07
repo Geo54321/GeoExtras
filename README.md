@@ -1,5 +1,5 @@
 
-# Current Supported Minecraft Version: 1.21.6
+# Current Supported Minecraft Version: 1.21.7
 
 ## GeoExtras
 This is a Minecraft Spigot plugin that adds features we use on the MCNSA community server. It can be used alongside my other plugin or standalone.
@@ -220,6 +220,9 @@ When you break a block with an item with the enchantment it will also break all 
 - Snow Block
 - Clay
 - Any Concrete Powder
+
+## Disconnect Workaround
+On 1.21.7 version of MCNSA our mix of plugins was somehow deleting disconnect messages without any errors to indicate the cause. Added an option to have custom disconnect messages as a workaround to this. They are disabled by default in the config.
 
 # All Permission Nodes as a Tree
 - GeoExtras.*
