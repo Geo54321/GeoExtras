@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.geoderp.geoextras.Artifacts.*;
 import com.geoderp.geoextras.Chat.*;
+import com.geoderp.geoextras.Disconnect.DisconnectFileWorker;
+import com.geoderp.geoextras.Disconnect.DisconnectMessage;
 import com.geoderp.geoextras.Farm.*;
 import com.geoderp.geoextras.Misc.*;
 import com.geoderp.geoextras.Silly.*;
@@ -86,12 +88,13 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new JankStep(), this);
         }
 
-        // Disconnect Messages Missing Workaround
-        if (getConfig().getBoolean("options.disconnect-workaround")) {
-            getServer().getPluginManager().registerEvents(new DisconnectMessage(), this);
+        // Disconnect Module
+        DisconnectFileWorker fileWorker = new DisconnectFileWorker(this);
+        if (getConfig().getBoolean("modules.disconnect")) {
+            getServer().getPluginManager().registerEvents(new DisconnectMessage(getConfig().getBoolean("options.disconnect-silly"), this, fileWorker), this);
         }
 
-        this.getCommand("geoextras").setExecutor(new GeoExtras(this));
+        this.getCommand("geoextras").setExecutor(new GeoExtras(this, fileWorker));
     }
     
     @Override
@@ -110,6 +113,7 @@ public class Main extends JavaPlugin {
         config.addDefault("modules.misc", true);
         config.addDefault("modules.silly", true);
         config.addDefault("modules.enchantments", true);
+        config.addDefault("modules.disconnect",true);
         config.addDefault("modules.soontm", true);
         config.addDefault("options.strong-magnet-range", 4);
         config.addDefault("options.weak-magnet-range", 2);
@@ -120,7 +124,7 @@ public class Main extends JavaPlugin {
         config.addDefault("options.hewing-max-block-break", 150);
         config.addDefault("options.prospecting-max-block-break", 50);
         config.addDefault("options.prospecting-stone-types", true);
-        config.addDefault("options.disconnect-workaround", false);
+        config.addDefault("options.disconnect-silly", true);
 
         config.options().copyDefaults(true);
         saveConfig();

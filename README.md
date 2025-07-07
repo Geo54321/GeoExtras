@@ -221,8 +221,11 @@ When you break a block with an item with the enchantment it will also break all 
 - Clay
 - Any Concrete Powder
 
-## Disconnect Workaround
-On 1.21.7 version of MCNSA our mix of plugins was somehow deleting disconnect messages without any errors to indicate the cause. Added an option to have custom disconnect messages as a workaround to this. They are disabled by default in the config.
+## Disconnect Module
+The disconnect module will replace the disconnect message with a custom one from this plugin. By default the message will be:
+[.o/] <player> left the server.
+
+However you can enable the "disconnect-silly" option in the config to use any custom messages you want. Add any messages you want to the "disconnect-messages.txt" file in the config folder. The any "#" you put in the message will be replaced with the player's name. Then reboot the server or using the /geoextras reload command to update the list it pulls from.
 
 # All Permission Nodes as a Tree
 - GeoExtras.*
