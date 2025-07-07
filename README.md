@@ -223,9 +223,9 @@ When you break a block with an item with the enchantment it will also break all 
 
 ## Disconnect Module
 The disconnect module will replace the disconnect message with a custom one from this plugin. By default the message will be:
-[.o/] <player> left the server.
+[.o/] playerName left the server.
 
-However you can enable the "disconnect-silly" option in the config to use any custom messages you want. Add any messages you want to the "disconnect-messages.txt" file in the config folder. The any "#" you put in the message will be replaced with the player's name. Then reboot the server or using the /geoextras reload command to update the list it pulls from.
+However you can enable the "disconnect-silly" option in the config to use any custom messages you want. Add any messages you want to the "disconnect-messages.txt" file in the config folder. Any "#" in the message will be replaced with the player's name. Then reboot the server or using the /geoextras reload command to update the list it pulls from.
 
 # All Permission Nodes as a Tree
 - GeoExtras.*
