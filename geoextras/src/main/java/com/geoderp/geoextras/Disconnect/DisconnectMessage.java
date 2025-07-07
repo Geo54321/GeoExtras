@@ -38,6 +38,13 @@ public class DisconnectMessage implements Listener {
 
     public String getRandomDisconnectMessage(Player player) {
         String fullMsg = "§7[§2.o/§7] "; //prefix
+
+        // My custom message :)
+        if (player.getName().equals("Geo54321")) {
+            fullMsg += "§2Geo gives everyone a hug and waves goodbye!";
+            return fullMsg;
+        }
+
         fullMsg += "§c"; // red
         //fullMsg += "§e"; // yellow
         String msg = disconnectMessages.get(0);
@@ -47,8 +54,14 @@ public class DisconnectMessage implements Listener {
             msg = disconnectMessages.get(rng.nextInt(disconnectMessages.size()));
         } 
         
-        msg.replace("#",player.getName());
-        fullMsg += msg;
+        String[] subs = msg.split("#");
+        for (int s = 0; s < subs.length; s++) {
+            fullMsg += subs[s];
+            if (s != subs.length-1) {
+                fullMsg += player.getName();
+            }
+        }
+        //fullMsg += msg;
 
         return fullMsg;
     }
