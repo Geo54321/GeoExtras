@@ -174,6 +174,9 @@ public class GeoArtifact implements CommandExecutor, TabCompleter {
                     if (isValidMaterial(offhand, artifactType)) {
                         makeMagnet(offhand);
                     }
+                    else {
+                        spawnMagnet(target, "strong");
+                    }
                 }
                 break;
             case "zoomies":
@@ -186,6 +189,9 @@ public class GeoArtifact implements CommandExecutor, TabCompleter {
                     ItemStack offhand = target.getInventory().getItemInOffHand();
                     if (isValidMaterial(offhand, artifactType)) {
                         makeZoomies(offhand);
+                    }
+                    else {
+                        spawnZoomies(target, "giga");
                     }
                 }
                 break;
