@@ -45,17 +45,11 @@ public class GeoArtifact implements CommandExecutor, TabCompleter {
         }
         else if (args.length == 2) {
             if (isValidArtifact(args[0]) && isValidTarget(args[1])) {
-                if (sender.hasPermission("GeoExtras.artifacts.staff")) {
-                    if (hasPerms(sender, args[0])) {
-                        createArtifact(sender, args, true);
-                    }
-                    else {
-                        sender.sendMessage("§cSorry you do not have permissions to create this type of artifact.");
-                    }
+                if (hasPerms(sender, args[0])) {
+                    createArtifact(sender, args, true);
                 }
                 else {
-                    sender.sendMessage("§cYou don't have permissions to spawn GeoArtifacts on other players. Using your inventory instead.");
-                    createArtifact(sender, args, false);
+                    sender.sendMessage("§cSorry you do not have permissions to create this type of artifact.");
                 }
             }
         }
@@ -106,17 +100,19 @@ public class GeoArtifact implements CommandExecutor, TabCompleter {
     }
 
     public boolean hasPerms(CommandSender sender, String type) {
-        switch (type) {
-            case "magnet":
-                if (sender.hasPermission("GeoExtras.artifacts.magnet.strong") || sender.hasPermission("GeoExtras.artifacts.magnet.weak")) {
-                    return true;
-                }
-                break;
-            case "zoomies":
-                if (sender.hasPermission("GeoExtras.artifacts.zoomies.weak") || sender.hasPermission("GeoExtras.artifacts.zoomies.strong") || sender.hasPermission("GeoExtras.artifacts.zoomies.giga")) {
-                    return true;
-                }
-                break;
+        if (sender.hasPermission("GeoExtras.artifacts.staff")) {
+            switch (type) {
+                case "magnet":
+                    if (sender.hasPermission("GeoExtras.artifacts.magnet.strong") || sender.hasPermission("GeoExtras.artifacts.magnet.weak")) {
+                        return true;
+                    }
+                    break;
+                case "zoomies":
+                    if (sender.hasPermission("GeoExtras.artifacts.zoomies.weak") || sender.hasPermission("GeoExtras.artifacts.zoomies.strong") || sender.hasPermission("GeoExtras.artifacts.zoomies.giga")) {
+                        return true;
+                    }
+                    break;
+            }
         }
         return false;
     }
